@@ -3,7 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
-  background-color: ${({ theme }) => theme.colors.black[800]};
+  background-color: ${({ theme }) => theme.COLORS.BLACK_800};
 `;
 
 export const ContainerImage = styled.ImageBackground`
@@ -33,13 +33,6 @@ export const ContentButtons = styled.View`
   margin-right: 16px;
 `;
 
-export const ContentReturnLogin = styled.View`
-  width: 190px;
-  margin-left: auto;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const TextContent = styled.Text`
   height: 40px;
   justify-content: flex-start;
@@ -50,7 +43,21 @@ export const TextContent = styled.Text`
 `;
 
 export const Subtitle = styled.Text`
-  font-size: ${({ theme }) => theme.fontSizes.MD}px;
-  font-family: ${({ theme }) => theme.fontFamily.REGULAR};
-  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
+  font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
+  color: ${({ theme }) => theme.COLORS.WHITE};
+`;
+
+export const Title = styled.Text`
+  font-size: ${({ theme }) => theme.FONT_SIZE.XL}px;
+  font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
+  color: ${({ theme }) => theme.COLORS.BLACK_800};
+  text-align: center;
+  padding-top: 18px;
+  padding-left: 14px;
+  padding-bottom: 2px;
+`;
+
+export const Spacer = styled.View`
+  height: 44px;
 `;

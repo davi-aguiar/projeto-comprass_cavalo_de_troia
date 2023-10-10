@@ -11,9 +11,9 @@ export const HoshiInput = styled(Hoshi).attrs(({ theme }) => ({
   inputPadding: 16,
   maxWidth: "80%",
   inputStyle: {
-    color: theme.colors.black[800],
-    fontSize: theme.fontSizes.MD,
-    fontFamily: theme.fontFamily.REGULAR,
+    color: theme.COLORS.BLACK_800,
+    fontSize: theme.FONT_SIZE.MD,
+    fontFamily: theme.FONT_FAMILY.BLACK,
     bottom: 2
   }
 }))`
@@ -24,9 +24,9 @@ export const HoshiInput = styled(Hoshi).attrs(({ theme }) => ({
 
   border-width: 1px;
 
-  border-color: ${({ theme }) => theme.colors.white};
+  border-color: ${({ theme }) => theme.COLORS.WHITE};
 
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.COLORS.WHITE};
 
   text-align: left;
   justify-content: flex-start;

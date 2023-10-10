@@ -8,9 +8,9 @@ export const Container = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-size: ${({ theme }) => theme.fontSizes.XL}px;
-  font-family: ${({ theme }) => theme.fontFamily.BOLD};
-  color: ${({ theme }) => theme.colors.black[800]};
+  font-size: ${({ theme }) => theme.FONT_SIZE.XL}px;
+  font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
+  color: ${({ theme }) => theme.COLORS.WHITE};
   text-align: center;
   padding-top: 18px;
   padding-left: 14px;
@@ -30,7 +30,7 @@ export const Spacer = styled.View`
 `;
 
 export const BackIcon = styled(CaretLeft).attrs(({ theme }) => ({
-  size: theme.fontSizes.LG,
-  color: theme.colors.black[800],
+  size: theme.FONT_SIZE.LG,
+  color: theme.COLORS.WHITE,
   weight: "bold"
 }))``;

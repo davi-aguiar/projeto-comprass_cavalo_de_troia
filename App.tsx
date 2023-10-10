@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+
 import {
   useFonts,
   OpenSans_400Regular,
@@ -21,7 +21,8 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      fontsLoaded ? <SignUp />
+      {fontsLoaded ? <SignUp /> : null}
+
       <StatusBar style="auto" />
     </ThemeProvider>
   );

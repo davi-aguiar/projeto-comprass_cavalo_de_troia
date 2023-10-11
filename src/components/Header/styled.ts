@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { CaretLeft } from "phosphor-react-native";
+import { ArrowLeft, CaretLeft } from "phosphor-react-native";
 
 export const Container = styled.View`
   flex-direction: column;
@@ -29,7 +29,7 @@ export const Spacer = styled.View`
   height: 44px;
 `;
 
-export const BackIcon = styled(CaretLeft).attrs(({ theme }) => ({
+export const BackIcon = styled(ArrowLeft).attrs(({ theme }) => ({
   size: theme.FONT_SIZE.LG,
   color: theme.COLORS.WHITE,
   weight: "bold"

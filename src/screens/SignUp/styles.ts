@@ -8,8 +8,6 @@ export const Container = styled(SafeAreaView)`
 
 export const ContainerImage = styled.ImageBackground`
   height: 375px;
-  width: 375px;
-  align-items: center;
 `;
 
 export const ContentHeader = styled.View`
@@ -20,9 +18,10 @@ export const ContentHeader = styled.View`
 export const ContentInputs = styled.View`
   min-height: 280px;
   max-height: 340px;
+  align-items: center;
   justify-content: space-between;
-  margin-left: 16px;
-  margin-right: 16px;
+  margin-left: 15px;
+  margin-right: 17px;
   margin-bottom: 8px;
 `;
 
@@ -34,11 +33,11 @@ export const ContentButtons = styled.View`
 `;
 
 export const TextContent = styled.Text`
-  height: 40px;
+  height: 72px;
   justify-content: flex-start;
   align-items: center;
   margin-left: 16px;
-  margin-right: 30px;
+  margin-right: 19px;
   margin-bottom: 16px;
 `;
 
@@ -60,4 +59,12 @@ export const Title = styled.Text`
 
 export const Spacer = styled.View`
   height: 44px;
+`;
+
+export const ButtonContent = styled.View`
+  top: 60px;
+  height: 100px;
+  justify-content: space-between;
+  margin-left: 17px;
+  margin-right: 17px;
 `;

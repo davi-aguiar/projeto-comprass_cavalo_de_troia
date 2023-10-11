@@ -1,5 +1,6 @@
 import React from "react";
 import { BackButton, BackIcon, Container, Spacer, Title } from "./styled";
+import Feather from "react-native-vector-icons/Feather";
 
 type Props = {
   title: string;
@@ -12,7 +13,7 @@ export function Header({ title, showBackButton = false, onPress }: Props) {
     <Container>
       {showBackButton ? (
         <BackButton onPress={onPress}>
-          <BackIcon />
+          <Feather name="chevron-left" size={75} color="#ffffff" />
         </BackButton>
       ) : (
         <Spacer />

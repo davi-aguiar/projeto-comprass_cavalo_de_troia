@@ -4,6 +4,7 @@ import { useTheme } from "styled-components/native";
 import { Controller, useForm } from "react-hook-form";
 
 import {
+  ButtonContent,
   Container,
   ContainerImage,
   ContentHeader,
@@ -13,6 +14,7 @@ import {
 } from "./styles";
 import { Input } from "@components/Input";
 import { Header } from "@components/Header";
+import { ButtonComponent } from "@components/Buttons";
 
 export function SignUp() {
   type FormType = { name: string; email: string; password: string };
@@ -30,29 +32,33 @@ export function SignUp() {
   } = useForm<FormType>({});
   return (
     <Container>
-      {/* <ContainerImage
+      <ContainerImage
         source={require("../../assets/images/ImageBackground.png")}
         resizeMode="cover"
-      /> */}
+      >
+        <ContentHeader>
+          <Header title="SignUp" />
+        </ContentHeader>
 
-      <ContentHeader>
-        <Header title="SignUp" />
-      </ContentHeader>
+        <TextContent>
+          <Subtitle>
+            {" "}
+            Choose a really cool name that only contains spaces as special
+            characters. Oh, and your password must have more than 4 digits!
+          </Subtitle>
+        </TextContent>
 
-      <TextContent>
-        <Subtitle>
-          {" "}
-          Choose a really cool name that only contains spaces as special
-          characters. Oh, and your password must have more than 4 digits!
-        </Subtitle>
-      </TextContent>
+        <ContentInputs>
+          <Input label="Name" keyboardType="default" />
+          <Input label="Email" keyboardType="default" />
+          <Input label="Password" keyboardType="default" />
+          <Input label="Confirm your password" keyboardType="default" />
+        </ContentInputs>
 
-      <ContentInputs>
-        <Input label="Name" keyboardType="default" />
-        <Input label="Email" keyboardType="default" />
-        <Input label="Password" keyboardType="default" />
-        <Input label="Confirm your password" keyboardType="default" />
-      </ContentInputs>
+        <ButtonContent>
+          <ButtonComponent title="SIGN UP" />
+        </ButtonContent>
+      </ContainerImage>
     </Container>
   );
 }

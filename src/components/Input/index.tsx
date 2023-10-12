@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { TextInputProps } from "react-native";
 import { HoshiProps } from "react-native-textinput-effects";
 import { Container, HoshiInput } from "./styles";
+
 import { useTheme } from "styled-components";
 
 type Props = HoshiProps &

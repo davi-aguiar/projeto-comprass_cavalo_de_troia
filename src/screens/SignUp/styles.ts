@@ -25,13 +25,6 @@ export const ContentInputs = styled.View`
   margin-bottom: 8px;
 `;
 
-export const ContentButtons = styled.View`
-  height: 100px;
-  justify-content: space-between;
-  margin-left: 16px;
-  margin-right: 16px;
-`;
-
 export const TextContent = styled.Text`
   height: 72px;
   justify-content: flex-start;

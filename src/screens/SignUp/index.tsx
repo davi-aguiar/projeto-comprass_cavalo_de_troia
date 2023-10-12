@@ -33,10 +33,10 @@ export function SignUp() {
     formState: { errors }
   } = useForm<FormType>({});
 
-  function handleGoBack() {
-    navigation.goBack();
-    setEmailErrorMessage("");
-  }
+  // function handleGoBack() {
+  //   navigation.goBack();
+  //   setEmailErrorMessage("");
+  // }
 
   const handleFormSubmit = async (data: FormType) => {
     try {
@@ -81,7 +81,7 @@ export function SignUp() {
         resizeMode="cover"
       >
         <ContentHeader>
-          <Header title="SignUp" showBackButton onPress={handleGoBack} />
+          <Header title="SignUp" />
         </ContentHeader>
 
         <TextContent>

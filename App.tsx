@@ -9,6 +9,7 @@ import {
 } from "@expo-google-fonts/open-sans";
 import { ThemeProvider } from "styled-components";
 import theme from "./src/theme";
+import { CepScreen } from "@screens/CepScreen";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -20,7 +21,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-        
+        <CepScreen />
 <StatusBar style="auto" />
     </ThemeProvider>
   );

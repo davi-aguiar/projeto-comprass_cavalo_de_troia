@@ -17,6 +17,7 @@ import { Header } from "@components/Header";
 import { ButtonComponent } from "@components/Buttons";
 import { ToastAndroid } from "react-native";
 import { api } from "@services/API";
+import { UserCreation } from "src/requests/UserCreation";
 
 export function SignUp() {
   type FormType = { name: string; email: string; password: string };
@@ -33,42 +34,20 @@ export function SignUp() {
     formState: { errors }
   } = useForm<FormType>({});
 
-  // function handleGoBack() {
-  //   navigation.goBack();
-  //   setEmailErrorMessage("");
-  // }
-
-  const handleFormSubmit = async (data: FormType) => {
+  const handleFormSubmit = async ({ name, email, password }: FormType) => {
     try {
       setIsLoading(true);
+      await UserCreation({ name, email, password });
 
-      const requestData = {
-        name: data.name,
-        email: data.email,
-        password: data.password,
-        avatar: "https://api.lorem.space/image/face?w=640&h=480&r=867"
-      };
-      console.log(requestData, "deu");
-      const response = await api.post("/users", {
-        name: data.name,
-        email: data.email,
-        password: data.password,
-        avatar: "https://api.lorem.space/image/face?w=640&h=480&r=867"
-      });
-
-      if (response) {
-        setIsSubmitSuccessful(true);
-        ToastAndroid.show("User created", ToastAndroid.LONG);
-      } else {
-        ToastAndroid.show(
-          "User not created,something went wrong",
-          ToastAndroid.LONG
-        );
-        // const errorData = await response();
-        // setEmailErrorMessage(errorData.error);
-      }
+      setIsSubmitSuccessful(true);
+      ToastAndroid.show("User created", ToastAndroid.LONG);
+      // const errorData = await response();
+      // setEmailErrorMessage(errorData.error);
     } catch (error) {
-      console.error("Erro ao enviar o formulário:", error);
+      ToastAndroid.show(
+        "User not created,something went wrong",
+        ToastAndroid.LONG
+      );
     } finally {
       setIsLoading(false);
     }

@@ -10,6 +10,8 @@ import {
 import { SignUp } from "@screens/SignUp";
 import { ThemeProvider } from "styled-components";
 import theme from "./src/theme";
+import { Login } from "@screens/Login";
+import { AuthRoutes } from "@routes/auth.routes";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -21,7 +23,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      {fontsLoaded ? <SignUp /> : null}
+      {fontsLoaded ? <Login /> : null}
 
       <StatusBar style="auto" />
     </ThemeProvider>

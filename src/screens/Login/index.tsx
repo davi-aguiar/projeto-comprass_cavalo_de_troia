@@ -18,7 +18,7 @@ import { ButtonComponent } from "@components/Buttons";
 import { ToastAndroid } from "react-native";
 import { api } from "@services/API";
 
-export function SignUp() {
+export function Login() {
   type FormType = { name: string; email: string; password: string };
 
   const [isLoading, setIsLoading] = useState(false);
@@ -33,37 +33,23 @@ export function SignUp() {
     formState: { errors }
   } = useForm<FormType>({});
 
-  function handleGoBack() {
-    navigation.goBack();
-    setEmailErrorMessage("");
-  }
-
   const handleFormSubmit = async (data: FormType) => {
     try {
       setIsLoading(true);
 
       const requestData = {
-        name: data.name,
         email: data.email,
-        password: data.password,
-        avatar: "https://api.lorem.space/image/face?w=640&h=480&r=867"
+        password: data.password
       };
-      console.log(requestData, "deu");
-      const response = await api.post("/users", {
-        name: data.name,
+      const response = await api.post("/auth/login", {
         email: data.email,
-        password: data.password,
-        avatar: "https://api.lorem.space/image/face?w=640&h=480&r=867"
+        password: data.password
       });
-
       if (response) {
         setIsSubmitSuccessful(true);
-        ToastAndroid.show("User created", ToastAndroid.LONG);
+        ToastAndroid.show("User Logged", ToastAndroid.LONG);
       } else {
-        ToastAndroid.show(
-          "User not created,something went wrong",
-          ToastAndroid.LONG
-        );
+        ToastAndroid.show("", ToastAndroid.LONG);
         // const errorData = await response();
         // setEmailErrorMessage(errorData.error);
       }
@@ -81,7 +67,7 @@ export function SignUp() {
         resizeMode="cover"
       >
         <ContentHeader>
-          <Header title="SignUp" showBackButton onPress={handleGoBack} />
+          <Header title="SignUp" />
         </ContentHeader>
 
         <TextContent>
@@ -93,18 +79,6 @@ export function SignUp() {
         </TextContent>
 
         <ContentInputs>
-          <Controller
-            name="name"
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <Input
-                label="Name"
-                keyboardType="default"
-                value={value}
-                onChangeText={onChange}
-              />
-            )}
-          />
           <Controller
             name="email"
             control={control}
@@ -123,19 +97,6 @@ export function SignUp() {
             render={({ field: { onChange, value } }) => (
               <Input
                 label="Password"
-                keyboardType="default"
-                secureTextEntry
-                value={value}
-                onChangeText={onChange}
-              />
-            )}
-          />
-          <Controller
-            name="password"
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <Input
-                label="Confirm your password"
                 keyboardType="default"
                 secureTextEntry
                 value={value}

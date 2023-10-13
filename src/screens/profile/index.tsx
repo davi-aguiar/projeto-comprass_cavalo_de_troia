@@ -1,266 +1,235 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Switch,
-  TouchableOpacity,
-  TextInput,
-  Modal,
-  Pressable,
-} from "react-native";
-import { Dimensions } from "react-native";
+import { Switch, TouchableOpacity, Modal, Alert } from "react-native";
 import { AntDesign, MaterialIcons } from "@expo/vector-icons";
-
-var width = Dimensions.get("window").width;
+import {
+  CenteredView,
+  ConfirmButton,
+  Container,
+  ConteinerConfirmButton,
+  ConteinerLogin,
+  ConteinerOptions,
+  EditButton,
+  Image,
+  ImageConteiner,
+  InfosConteiner,
+  LoginButton,
+  LoginButtonText,
+  ModalButton,
+  ModalOptions,
+  ModalTitle,
+  ProfileEmail,
+  ProfileName,
+  ProfileOptions,
+  ProfileOptionsText,
+  StyledText,
+  TextLogin,
+  Title,
+  TitleConteiner,
+} from "./styles";
 
 export function Profile() {
-  const [isEnabled, setIsEnabled] = useState(false);
+  const [editIsEnabled, setEditIsEnabled] = useState(false);
   const [name, setName] = useState("Juliane Golçalves Freitas");
   const [modalVisible, setModalVisible] = useState(false);
-  const [englishSelected, setEglishSelected] = useState(false);
+  const [englishSelected, setEnglishSelected] = useState(false);
   const [portugueseSelected, setPortugueseSelected] = useState(false);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const [logged, setLogged] = useState(true);
+
+  const englishTextColor = englishSelected ? "white" : "black";
+  const portguesTextColor = portugueseSelected ? "white" : "black";
+  const englishButtonColor = englishSelected ? "#DB3022" : "white";
+  const portguesButtonColor = portugueseSelected ? "#DB3022" : "white";
+
+  function goToLogin() {}
+
+  function toggleSwitch() {
+    if (editIsEnabled == true) {
+      Alert.alert(
+        "Warning",
+        "Do you want to abandon your changes?",
+        [
+          {
+            text: "Yes",
+            onPress: () => setEditIsEnabled((previousState) => !previousState),
+            style: "destructive",
+          },
+          { text: "No" },
+        ],
+        { cancelable: false }
+      );
+    } else {
+      setEditIsEnabled((previousState) => !previousState);
+    }
+  }
 
   function selectEnglish() {
-    setEglishSelected(true);
+    setEnglishSelected(true);
     setPortugueseSelected(false);
   }
+
   function selectPortuguese() {
     setPortugueseSelected(true);
-    setEglishSelected(false);
+    setEnglishSelected(false);
   }
-  function handleOnChangeName(name: string) {
-    setName(name);
+
+  function handleOnChangeName(newName: string) {
+    setName(newName);
   }
+
   function confirmEditing() {
     toggleSwitch();
     console.log("editou");
   }
+
   function logOut() {
-    console.log("deslogou");
+    Alert.alert(
+      "Warning",
+      "Do you really want to leave?",
+      [
+        {
+          text: "Yes",
+          onPress: () => console.log("Deslogou"),
+          style: "destructive",
+        },
+        { text: "No" },
+      ],
+      { cancelable: false }
+    );
   }
+  if (logged) {
+    return (
+      <Container>
+        <ConteinerConfirmButton>
+          {editIsEnabled && (
+            <ConfirmButton onPress={confirmEditing}>
+              <AntDesign name="check" size={24} color="white" />
+            </ConfirmButton>
+          )}
+        </ConteinerConfirmButton>
+        <TitleConteiner>
+          <Title>My profile</Title>
+        </TitleConteiner>
+        <ImageConteiner>
+          <Image source={require("@screens/profile/image.png")} />
+          {editIsEnabled && (
+            <EditButton>
+              <MaterialIcons name="mode-edit" size={24} color="white" />
+            </EditButton>
+          )}
+        </ImageConteiner>
+        <InfosConteiner>
+          {editIsEnabled ? (
+            <ProfileName
+              value={name}
+              onChangeText={handleOnChangeName}
+            ></ProfileName>
+          ) : (
+            <ProfileName>{name}</ProfileName>
+          )}
+          <ProfileEmail>matildabrown@mail.com</ProfileEmail>
+        </InfosConteiner>
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.conteinerConfirmButton}>
-        {isEnabled && (
-          <TouchableOpacity
-            onPress={confirmEditing}
-            style={styles.confirmButton}
-          >
-            <AntDesign name="check" size={24} color="white" />
-          </TouchableOpacity>
-        )}
-      </View>
-      <View style={styles.titleConteiner}>
-        <Text style={styles.title}>My profile</Text>
-      </View>
-      <View>
-        <Image
-          style={styles.image}
-          source={require("@screens/profile/image.png")}
-        ></Image>
-        {isEnabled && (
-          <TouchableOpacity style={styles.editButton}>
-            <MaterialIcons name="mode-edit" size={24} color="white" />
-          </TouchableOpacity>
-        )}
-      </View>
-      <View>
-        {isEnabled ? (
-          <TextInput
-            value={name}
-            onChangeText={handleOnChangeName}
-            style={styles.profileName}
-          ></TextInput>
-        ) : (
-          <Text style={styles.profileName}>{name}</Text>
-        )}
+        <ConteinerOptions>
+          <ProfileOptions>
+            <ProfileOptionsText>Edit Informations</ProfileOptionsText>
+            <Switch onValueChange={toggleSwitch} value={editIsEnabled}></Switch>
+          </ProfileOptions>
 
-        <Text style={styles.profileEmail}>matildabrown@mail.com</Text>
-      </View>
-      <View style={styles.conteinerOptions}>
-        <View style={styles.profileOptions}>
-          <Text style={styles.profileOptionsText}>Edit Informations</Text>
-          <Switch onValueChange={toggleSwitch} value={isEnabled}></Switch>
-        </View>
-        <TouchableOpacity onPress={() => setModalVisible(true)}>
-          <View style={styles.profileOptions}>
-            <Text style={styles.profileOptionsText}>Language</Text>
-            <AntDesign name="down" size={24} color="black" />
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={logOut}>
-          <View style={styles.profileOptions}>
-            <Text style={styles.profileOptionsText}>Log out</Text>
-            <AntDesign name="logout" size={24} color="black" />
-          </View>
-        </TouchableOpacity>
-      </View>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <Pressable
-          style={styles.centeredView}
-          onPress={() => {
-            setModalVisible(false);
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
+            <ProfileOptions>
+              <ProfileOptionsText>Language</ProfileOptionsText>
+              <AntDesign name="down" size={24} color="black" />
+            </ProfileOptions>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={logOut}>
+            <ProfileOptions>
+              <ProfileOptionsText>Log out</ProfileOptionsText>
+              <AntDesign name="logout" size={24} color="black" />
+            </ProfileOptions>
+          </TouchableOpacity>
+        </ConteinerOptions>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);
           }}
         >
-          <View style={styles.modalOptions}>
-            <Text style={styles.modalTitle}>Languages</Text>
-            <TouchableOpacity
-              style={
-                englishSelected
-                  ? styles.modalButtonsSelected
-                  : styles.modalButtonsUnselected
-              }
-              onPress={selectEnglish}
-            >
-              <Text
-                style={
-                  englishSelected ? { color: "white" } : { color: "black" }
-                }
+          <CenteredView
+            onPress={() => {
+              setModalVisible(false);
+            }}
+          >
+            <ModalOptions>
+              <ModalTitle>Languages</ModalTitle>
+              <ModalButton color={englishButtonColor} onPress={selectEnglish}>
+                <StyledText color={englishTextColor}>English</StyledText>
+              </ModalButton>
+              <ModalButton
+                color={portguesButtonColor}
+                onPress={selectPortuguese}
               >
-                English
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={
-                portugueseSelected
-                  ? styles.modalButtonsSelected
-                  : styles.modalButtonsUnselected
-              }
-              onPress={selectPortuguese}
-            >
-              <Text
-                style={
-                  portugueseSelected ? { color: "white" } : { color: "black" }
-                }
+                <StyledText color={portguesTextColor}>
+                  Portugues - Brazil
+                </StyledText>
+              </ModalButton>
+            </ModalOptions>
+          </CenteredView>
+        </Modal>
+      </Container>
+    );
+  } else {
+    return (
+      <Container>
+        <ConteinerConfirmButton></ConteinerConfirmButton>
+        <TitleConteiner>
+          <Title>My profile</Title>
+        </TitleConteiner>
+        <ConteinerLogin>
+          <TextLogin>You need to log in to see your details</TextLogin>
+          <LoginButton onPress={goToLogin}>
+            <LoginButtonText>LOGIN</LoginButtonText>
+          </LoginButton>
+        </ConteinerLogin>
+        <ConteinerOptions>
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
+            <ProfileOptions>
+              <ProfileOptionsText>Language</ProfileOptionsText>
+              <AntDesign name="down" size={24} color="black" />
+            </ProfileOptions>
+          </TouchableOpacity>
+        </ConteinerOptions>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <CenteredView
+            onPress={() => {
+              setModalVisible(false);
+            }}
+          >
+            <ModalOptions>
+              <ModalTitle>Languages</ModalTitle>
+              <ModalButton color={englishButtonColor} onPress={selectEnglish}>
+                <StyledText color={englishTextColor}>English</StyledText>
+              </ModalButton>
+              <ModalButton
+                color={portguesButtonColor}
+                onPress={selectPortuguese}
               >
-                Portuguese - Brazil
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </Pressable>
-      </Modal>
-    </View>
-  );
+                <StyledText color={portguesTextColor}>
+                  Portugues - Brazil
+                </StyledText>
+              </ModalButton>
+            </ModalOptions>
+          </CenteredView>
+        </Modal>
+      </Container>
+    );
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "flex-start",
-    padding: 30,
-  },
-  title: {
-    fontWeight: "800",
-    fontSize: 32,
-    alignItems: "flex-start",
-    marginHorizontal: 20,
-  },
-  image: {
-    borderRadius: 100,
-    margin: 20,
-  },
-  profileName: {
-    fontWeight: "600",
-    fontSize: 24,
-  },
-  profileEmail: {
-    fontSize: 14,
-    fontWeight: "600",
-    color: "#9B9B9B",
-  },
-  profileOptionsText: {
-    fontWeight: "700",
-    fontSize: 16,
-  },
-  profileOptions: {
-    justifyContent: "space-between",
-    alignItems: "center",
-    flexDirection: "row",
-    borderBottomColor: "grey",
-    borderBottomWidth: 1,
-    height: 73,
-    padding: 20,
-    margin: 1,
-  },
-  conteinerOptions: {
-    width: width,
-  },
-  titleConteiner: {
-    alignItems: "flex-start",
-    width: width,
-  },
-  confirmButton: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#2AA952",
-    borderRadius: 100,
-    height: 46,
-    width: 46,
-    margin: 20,
-  },
-  conteinerConfirmButton: {
-    width: width,
-    alignItems: "flex-end",
-    height: 80,
-  },
-  editButton: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#FF0024",
-    borderRadius: 100,
-    height: 46,
-    width: 46,
-    margin: 20,
-    position: "absolute",
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "center",
-    backgroundColor: "rgba(0,0,0,0.5)",
-  },
-  modalOptions: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "white",
-    width: width,
-    height: 200,
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-  },
-  modalTitle: {
-    margin: 20,
-    fontSize: 18,
-    fontWeight: "700",
-  },
-  modalTextsSelected: {
-    color: "white",
-  },
-  modalButtonsSelected: {
-    justifyContent: "center",
-    height: 50,
-    backgroundColor: "#DB3022",
-    width: width,
-    paddingHorizontal: 20,
-  },
-  modalButtonsUnselected: {
-    justifyContent: "center",
-    height: 50,
-    backgroundColor: "white",
-    width: width,
-    paddingHorizontal: 20,
-  },
-});

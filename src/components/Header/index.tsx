@@ -13,7 +13,7 @@ export function Header({ title, showBackButton = false, onPress }: Props) {
     <Container>
       {showBackButton ? (
         <BackButton onPress={onPress}>
-          <Feather name="chevron-left" size={75} color="#ce3333" />
+          <BackIcon />
         </BackButton>
       ) : (
         <Spacer />

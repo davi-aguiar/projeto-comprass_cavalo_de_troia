@@ -25,19 +25,6 @@ export function Input({
   const showErrorIcon = !!errorMessage;
   const hasValue = value && value.trim() !== "";
 
-  // const { COLORS, FONTE_SIZE, FONT_FAMILY } = useTheme();
-
-  // const labelStyle = {
-  //   fontSize: isFocused || hasValue ? FONTE_SIZE.XS :
-  //   FONT_FAMILY: FONT_FAMILY.REGULAR,
-  //   top: isFocused || hasValue ? 10 : -2
-  // };
-
-  // const labelStyleError = {
-  //   color: errorMessage ? COLORS.red[500] : COLORS.gray[500],
-  //   ...labelStyle
-  // };
-
   return (
     <Container>
       <HoshiInput label={label} {...rest} />

@@ -22,6 +22,7 @@ export const ContentInputs = styled.View`
   margin-left: 15px;
   margin-right: 17px;
   margin-bottom: 8px;
+  margin: 16px 0;
 `;
 
 export const TextContent = styled.Text`

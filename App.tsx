@@ -23,7 +23,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      {fontsLoaded ? <Login /> : null}
+      {fontsLoaded ? <AuthRoutes /> : null}
 
       <StatusBar style="auto" />
     </ThemeProvider>

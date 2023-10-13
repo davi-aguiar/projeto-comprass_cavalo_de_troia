@@ -6,3 +6,5 @@ export type UserCreationDTO = {
 };
 
 export type UserCreationDTOOmit = Omit<UserCreationDTO, "avatar">;
+
+type OmitNameAndAvatar = Omit<UserCreationDTO, "name" | "avatar">;

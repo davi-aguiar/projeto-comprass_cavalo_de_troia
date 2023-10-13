@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import { Hoshi } from "react-native-textinput-effects";
+import { CaretLeft } from "phosphor-react-native";
 
 export const Container = styled.View`
   flex-direction: row;
@@ -29,3 +30,9 @@ export const HoshiInput = styled(Hoshi).attrs(({ theme }) => ({
   border-radius: 6px;
   elevation: 1;
 `;
+
+export const BackIcon = styled(CaretLeft).attrs(({ theme }) => ({
+  size: theme.FONT_SIZE.LG,
+  color: theme.COLORS.WHITE,
+  weight: "bold"
+}))``;

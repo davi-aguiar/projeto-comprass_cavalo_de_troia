@@ -16,11 +16,14 @@ import { Input } from "@components/Input";
 import { Header } from "@components/Header";
 import { ButtonComponent } from "@components/Buttons";
 import { ToastAndroid } from "react-native";
-import { api } from "@services/API";
-import { UserCreation } from "src/requests/UserCreation";
+import { UserCreation } from "../../requests/UserCreation";
+import { useNavigation } from "@react-navigation/native";
+import { AuthProps } from "@routes/auth.routes";
 
 export function SignUp() {
   type FormType = { name: string; email: string; password: string };
+
+  const navigation = useNavigation<AuthProps>();
 
   const [isLoading, setIsLoading] = useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = useState("");
@@ -34,6 +37,15 @@ export function SignUp() {
     formState: { errors }
   } = useForm<FormType>({});
 
+  function handleGoToLogin() {
+    navigation.navigate("Login");
+    setEmailErrorMessage("");
+  }
+
+  function handleGoBack() {
+    navigation.goBack();
+    setEmailErrorMessage("");
+  }
   const handleFormSubmit = async ({ name, email, password }: FormType) => {
     try {
       setIsLoading(true);
@@ -60,7 +72,7 @@ export function SignUp() {
         resizeMode="cover"
       >
         <ContentHeader>
-          <Header title="SignUp" />
+          <Header title="SignUp" showBackButton onPress={handleGoBack} />
         </ContentHeader>
 
         <TextContent>

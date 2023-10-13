@@ -21,8 +21,8 @@ export function AuthRoutes() {
   return (
     <NavigationContainer>
       <Navigator screenOptions={{ headerShown: false }}>
-        <Screen name="SignUp" component={SignUp} />
         <Screen name="Login" component={Login} />
+        <Screen name="SignUp" component={SignUp} />
       </Navigator>
     </NavigationContainer>
   );

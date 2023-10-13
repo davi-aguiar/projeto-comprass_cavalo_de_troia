@@ -3,8 +3,7 @@ import { ScrollView, StatusBar} from 'react-native';
 import styles from './styles';
 
 import HeaderMain from '../../components/HeaderMain';
-
-
+import ProductItem from '../../components/Products';
 
 function MainPage() {
   return (
@@ -12,7 +11,7 @@ function MainPage() {
       <StatusBar barStyle="light-content" backgroundColor="#000" />
       <ScrollView>
         <HeaderMain />
-
+        <ProductItem />
       </ScrollView>
     </>
   );

@@ -14,16 +14,15 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
         marginTop: 25,
         marginRight: 20,
-        
     },
     elipseImage: {
-        top: 8,
-        right: 10,
-    },
-    lupaImage: {
         top: 0,
         position: 'absolute',
         zIndex: -1,
+    },
+    lupaImage: {
+        top: 8,
+        right: 12,
     },
     logoContainer: {
         flexDirection: 'row',

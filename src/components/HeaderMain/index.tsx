@@ -19,11 +19,11 @@ function HeaderMain() {
             >
                     <TouchableOpacity style={styles.touchableOpacity}>
                         <Image
-                            source={require('../../../assets/images/lupa-image.png')}
+                            source={require('../../../assets/images/elipse-image.png')}
                             style={styles.elipseImage}
                         />
                         <Image
-                            source={require('../../../assets/images/elipse-image.png')}
+                            source={require('../../../assets/images/lupa-image.png')}
                             style={styles.lupaImage}
                         />
                     </TouchableOpacity>

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import theme from '../../theme'; 
 
 const styles = StyleSheet.create({
     container: {
@@ -9,7 +10,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
     },
-    touchableOpacity: {
+    searchButton: {
         justifyContent: 'center',
         alignItems: 'flex-end',
         marginTop: 25,
@@ -28,8 +29,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 110,
-
+        marginTop: 115,
     },
     logoImage: {
 
@@ -39,10 +39,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
         marginTop: 110,
+        marginBottom: 16,
     },
     text: {
-        color: '#fff',
-        fontSize: 16,
+        color: theme.COLORS.WHITE,
+        fontSize: theme.FONT_SIZE.MD,
         marginRight: 16,
         marginLeft: 16,
     },

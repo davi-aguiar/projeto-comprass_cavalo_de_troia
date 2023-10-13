@@ -17,7 +17,7 @@ function HeaderMain() {
                 source={require('../../../assets/images/background-compass.png')}
                 style={styles.imageBackground}
             >
-                    <TouchableOpacity style={styles.touchableOpacity}>
+                    <TouchableOpacity style={styles.searchButton}>
                         <Image
                             source={require('../../../assets/images/elipse-image.png')}
                             style={styles.elipseImage}

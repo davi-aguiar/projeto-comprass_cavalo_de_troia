@@ -6,27 +6,23 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     imageBackground: {
-        
-    },
-    buttomContainer: {
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
         width: '100%',
-        height: 60,
-        paddingRight: 20,
-        marginTop: 25,
+        height: '100%',
     },
     touchableOpacity: {
-        width: 30,
-        height: 60,
-        alignItems: 'center',
         justifyContent: 'center',
+        alignItems: 'flex-end',
+        marginTop: 25,
+        marginRight: 20,
+        
     },
     elipseImage: {
-        position: 'absolute',
+        top: 8,
+        right: 10,
     },
     lupaImage: {
+        top: 0,
+        position: 'absolute',
         zIndex: -1,
     },
     logoContainer: {

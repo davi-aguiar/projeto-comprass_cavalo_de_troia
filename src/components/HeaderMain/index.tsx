@@ -17,7 +17,6 @@ function HeaderMain() {
                 source={require('../../../assets/images/background-compass.png')}
                 style={styles.imageBackground}
             >
-                <View style={styles.buttomContainer}>
                     <TouchableOpacity style={styles.touchableOpacity}>
                         <Image
                             source={require('../../../assets/images/lupa-image.png')}
@@ -28,8 +27,6 @@ function HeaderMain() {
                             style={styles.lupaImage}
                         />
                     </TouchableOpacity>
-                </View>
-
                 <View style={styles.logoContainer}>
                     <Image source={require('../../../assets/images/c-letter.png')} style={styles.logoImage} />
                     <Image source={require('../../../assets/images/uol-logo.png')} style={styles.logoImage} />

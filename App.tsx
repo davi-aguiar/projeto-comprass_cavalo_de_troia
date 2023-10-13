@@ -7,6 +7,7 @@ import {
   OpenSans_700Bold,
   OpenSans_800ExtraBold
 } from "@expo-google-fonts/open-sans";
+import MainPage from "@screens/MainPage";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -20,6 +21,7 @@ export default function App() {
     <View style={styles.container}>
       {/* <Text>Open up App.tsx to start working on your app!</Text> */}
       {/* <StatusBar style="auto" /> */}
+      <MainPage />
     </View>
   );
 }

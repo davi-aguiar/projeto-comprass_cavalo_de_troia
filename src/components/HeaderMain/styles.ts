@@ -1,56 +1,59 @@
-import { StyleSheet } from 'react-native';
-import theme from '../../theme'; 
+import styled from 'styled-components/native';
+import theme from '../../theme';
 
-const styles = StyleSheet.create({
-    container: {
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    imageBackground: {
-        width: '100%',
-        height: '100%',
-    },
-    searchButton: {
-        justifyContent: 'center',
-        alignItems: 'flex-end',
-        marginTop: 25,
-        marginRight: 20,
-    },
-    elipseImage: {
-        top: 0,
-        position: 'absolute',
-        zIndex: -1,
-    },
-    lupaImage: {
-        top: 8,
-        right: 12,
-    },
-    logoContainer: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 115,
-    },
-    logoImage: {
+export const Container = styled.SafeAreaView`
+    align-items: center;
+    justify-content: center;
+`;
 
-    },
-    cartContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        marginTop: 110,
-        marginBottom: 16,
-    },
-    text: {
-        color: theme.COLORS.WHITE,
-        fontSize: theme.FONT_SIZE.MD,
-        marginRight: 16,
-        marginLeft: 16,
-    },
-    cartImage: {
-        width: 46,
-        height: 46,
-    },
-});
+export const ImageBackgroundStyled = styled.ImageBackground`
+    width: 100%;
+    height: 100%;
+`;
 
-export default styles;
+export const SearchButton = styled.TouchableOpacity`
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 25px;
+    margin-right: 20px;
+`;
+
+export const ElipseImage = styled.Image`
+    top: 0;
+    position: absolute;
+    z-index: -1;
+`;
+
+export const LupaImage = styled.Image`
+    top: 8px;
+    right: 12px;
+`;
+
+export const LogoContainer = styled.View`
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 115px;
+`;
+
+export const LogoImage = styled.Image``;
+
+export const CartContainer = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 110px;
+    margin-bottom: 16px;
+`;
+
+export const TextStyled = styled.Text`
+    color: ${theme.COLORS.WHITE};
+    font-size: ${theme.FONT_SIZE.MD}px;
+    margin-right: 16px;
+    margin-left: 16px;
+`;
+
+export const CartImage = styled.Image`
+    width: 46px;
+    height: 46px;
+`;

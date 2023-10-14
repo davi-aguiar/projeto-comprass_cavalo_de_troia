@@ -10,7 +10,7 @@ import {
 import { ThemeProvider } from "styled-components";
 import theme from "./src/theme";
 import { CepScreen } from "@screens/CepScreen";
-
+import { Routes } from "@routes/index";
 export default function App() {
   const [fontsLoaded] = useFonts({
     OpenSans_400Regular,
@@ -21,7 +21,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-        <CepScreen />
+         <Routes />
 <StatusBar style="auto" />
     </ThemeProvider>
   );

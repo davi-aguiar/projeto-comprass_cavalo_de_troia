@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, ScrollView, Alert } from "react-native";
-import { CepHeader } from "@components/CepHeader";
+import { CheckoutHeader } from "@components/CheckoutHeader";
 import { CepInput } from "@components/CepInput";
 import { ButtonComponent } from "@components/Buttons";
 import axios from "axios";
@@ -73,7 +73,7 @@ export const CepScreen = () => {
 
   return (
     <ScrollView>
-      <CepHeader text="Adding Shipping Address" onBackPress={onCheckout} />
+      <CheckoutHeader text="Adding Shipping Address" onBackPress={onCheckout} />
       <CepInput
         text="Zip Code (Postal Code)"
         zipCode={zipCode}

@@ -71,7 +71,9 @@ export const ProductName = styled.Text`
 `;
 
 export const ProductPrice = styled.Text`
-  font-size: ${theme.FONT_SIZE.MD}px;
-  font-family: ${theme.FONT_FAMILY.EXTRA_BOLD};
-  color: ${theme.COLORS.RED_500};
+  font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
+  /* font-family: ${({ theme }) => theme.FONT_FAMILY.EXTRA_BOLD}; */
+  font-weight: 700;
+  color: ${({ theme }) => theme.COLORS.RED_500};
 `;
+

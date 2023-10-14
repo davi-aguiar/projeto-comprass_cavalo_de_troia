@@ -52,6 +52,7 @@ export const TextStyled = styled.Text`
     font-size: ${theme.FONT_SIZE.MD}px;
     margin-right: 16px;
     margin-left: 16px;
+    font-family: ${theme.FONT_FAMILY.SEMI_BOLD};
 `;
 
 export const CartImage = styled.Image`

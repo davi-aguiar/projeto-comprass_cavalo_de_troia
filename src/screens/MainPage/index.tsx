@@ -1,6 +1,5 @@
 import React from 'react';
 import { ScrollView, StatusBar} from 'react-native';
-import styles from './styles';
 
 import HeaderMain from '../../components/HeaderMain';
 import ProductItem from '../../components/Products';

@@ -7,8 +7,11 @@ import axios from "axios";
 import { useTheme } from "styled-components/native";
 import { Api } from "@services/CepApi";
 import { ButtonContainer } from "./styles";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
-export const CepScreen = () => {
+export const CepScreen = ({ navigation }: { navigation: any }) => {
+  
+  const route = useRoute();
   const { COLORS } = useTheme();
   const [isLoading, setIsLoading] = useState(false);
   const [zipCode, setZipCode] = useState("");
@@ -20,7 +23,16 @@ export const CepScreen = () => {
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
 
   const onCheckout = () => {
-    console.log('Checkout');
+    navigation.navigate('CheckoutScreen');
+  };
+  const onSaveAddress = () => {
+  
+    navigation.navigate('CheckoutScreen', {
+      address,
+      city,
+      uf,
+      neighborhood,
+    });
   };
 
   useEffect(() => {
@@ -120,7 +132,7 @@ export const CepScreen = () => {
         showIcons={false}
       />
       <ButtonContainer>
-        <ButtonComponent title="SAVE ADDRESS" width={343} height={48} isDisabled={!isButtonEnabled} />
+        <ButtonComponent title="SAVE ADDRESS" width={343} height={48} isDisabled={!isButtonEnabled} onPress={onSaveAddress} />
         </ButtonContainer>
     </ScrollView>
   );

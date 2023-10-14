@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import theme from '../../theme';// Importe o arquivo Theme.ts
+import theme from '../../theme';
 export const Container = styled.View`
   width: 100%;
   height: 92px;

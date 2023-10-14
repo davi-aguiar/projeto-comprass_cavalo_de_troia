@@ -9,6 +9,7 @@ import {
   ContainerEmailInput,
   ContainerText,
   ContentInputs,
+  DontLog,
   DontLoginText,
   ForgotContainer,
   ForgotPasswordText,
@@ -23,10 +24,14 @@ import { ButtonComponent } from "@components/Buttons";
 import { ToastAndroid, View } from "react-native";
 import { api } from "@services/API";
 import { StatusBar } from "expo-status-bar";
+import { useNavigation } from "@react-navigation/native";
 import { SignUp } from "@screens/SignUp";
+import { AuthProps } from "@routes/auth.routes";
 
 export function Login() {
   type FormType = { name: string; email: string; password: string };
+
+  const navigation = useNavigation<AuthProps>();
 
   const [isLoading, setIsLoading] = useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = useState("");
@@ -79,11 +84,11 @@ export function Login() {
         <ContentInputs>
           <ContainerEmailInput>
             <Controller
-              name="name"
+              name="email"
               control={control}
               render={({ field: { onChange, value } }) => (
                 <Input
-                  label="Name"
+                  label="Email"
                   keyboardType="default"
                   value={value}
                   onChangeText={onChange}
@@ -115,15 +120,17 @@ export function Login() {
         </ButtonContent>
 
         <ContainerText>
-          <SignUpContainer>
+          <SignUpContainer onPress={() => navigation.navigate("SignUp")}>
             <SignUpText>Not have an account yet? {"\n"}Sign up</SignUpText>
           </SignUpContainer>
           <ForgotContainer>
             <ForgotPasswordText> Forgot your password?</ForgotPasswordText>
           </ForgotContainer>
-          <DontLoginText>
-            <DontLoginText> I dont Want Login</DontLoginText>
-          </DontLoginText>
+          <DontLog>
+            <DontLoginText>
+              <DontLoginText> I dont Want Login</DontLoginText>
+            </DontLoginText>
+          </DontLog>
         </ContainerText>
       </ImageLogoBG>
     </Container>

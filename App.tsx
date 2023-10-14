@@ -11,6 +11,8 @@ import { SignUp } from "@screens/SignUp";
 import { ThemeProvider } from "styled-components";
 import theme from "./src/theme";
 import { Login } from "@screens/Login";
+import { NavigationContainer } from "@react-navigation/native";
+
 import { AuthRoutes } from "@routes/auth.routes";
 import { Profile } from "@screens/Profile";
 
@@ -23,10 +25,12 @@ export default function App() {
   });
 
   return (
-    <ThemeProvider theme={theme}>
-      {fontsLoaded ? <SignUp /> : null}
+    <NavigationContainer>
+      <ThemeProvider theme={theme}>
+        {fontsLoaded ? <AuthRoutes /> : null}
 
-      <StatusBar style="auto" />
-    </ThemeProvider>
+        <StatusBar style="auto" />
+      </ThemeProvider>
+    </NavigationContainer>
   );
 }

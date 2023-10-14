@@ -19,11 +19,9 @@ const { Navigator, Screen } =
 
 export function AuthRoutes() {
   return (
-    <NavigationContainer>
-      <Navigator screenOptions={{ headerShown: false }}>
-        <Screen name="Login" component={Login} />
-        <Screen name="SignUp" component={SignUp} />
-      </Navigator>
-    </NavigationContainer>
+    <Navigator screenOptions={{ headerShown: false }}>
+      <Screen name="Login" component={Login} />
+      <Screen name="SignUp" component={SignUp} />
+    </Navigator>
   );
 }

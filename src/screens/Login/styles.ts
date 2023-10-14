@@ -35,6 +35,7 @@ export const ContainerText = styled.View`
 `;
 
 export const SignUpContainer = styled.TouchableOpacity``;
+
 export const DontLogContainer = styled.TouchableOpacity``;
 export const ForgotContainer = styled.TouchableOpacity``;
 
@@ -68,3 +69,5 @@ export const LogoComprass = styled.Image`
   margin-left: auto;
   margin-right: auto;
 `;
+
+export const DontLog = styled.TouchableOpacity``;

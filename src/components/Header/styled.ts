@@ -1,10 +1,12 @@
 import styled from "styled-components/native";
 import { ArrowLeft, CaretLeft } from "phosphor-react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-export const Container = styled.View`
+export const Container = styled(SafeAreaView)`
   flex-direction: column;
   align-items: flex-start;
   height: 104px;
+  top: 32px;
 `;
 
 export const Title = styled.Text`
@@ -29,8 +31,8 @@ export const Spacer = styled.View`
   height: 44px;
 `;
 
-export const BackIcon = styled(ArrowLeft).attrs(({ theme }) => ({
-  size: theme.FONT_SIZE.LG,
+export const BackIcon = styled(CaretLeft).attrs(({ theme }) => ({
+  size: theme.FONT_SIZE.XL,
   color: theme.COLORS.WHITE,
   weight: "bold"
 }))``;

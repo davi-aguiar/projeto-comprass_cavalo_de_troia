@@ -7,7 +7,12 @@ export const Container = styled(SafeAreaView)`
 `;
 
 export const ContainerImage = styled.ImageBackground`
-  height: 375px;
+  position: absolute;
+  width: 375px;
+  justify-content: center;
+  align-self: center;
+  min-height: 375px;
+  top: 64px;
 `;
 
 export const ContentHeader = styled.View`

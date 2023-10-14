@@ -23,7 +23,7 @@ import { AuthProps } from "@routes/auth.routes";
 export function SignUp() {
   type FormType = { name: string; email: string; password: string };
 
-  const navigation = useNavigation<AuthProps>();
+  // const navigation = useNavigation<AuthProps>();
 
   const [isLoading, setIsLoading] = useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = useState("");
@@ -37,15 +37,15 @@ export function SignUp() {
     formState: { errors }
   } = useForm<FormType>({});
 
-  function handleGoToLogin() {
-    navigation.navigate("Login");
-    setEmailErrorMessage("");
-  }
+  // function handleGoToLogin() {
+  //   navigation.navigate("Login");
+  //   setEmailErrorMessage("");
+  // }
 
-  function handleGoBack() {
-    navigation.goBack();
-    setEmailErrorMessage("");
-  }
+  // function handleGoBack() {
+  //   navigation.goBack();
+  //   setEmailErrorMessage("");
+  // }
   const handleFormSubmit = async ({ name, email, password }: FormType) => {
     try {
       setIsLoading(true);
@@ -72,7 +72,7 @@ export function SignUp() {
         resizeMode="cover"
       >
         <ContentHeader>
-          <Header title="SignUp" showBackButton onPress={handleGoBack} />
+          <Header title="SignUp" showBackButton />
         </ContentHeader>
 
         <TextContent>

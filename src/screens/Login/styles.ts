@@ -6,52 +6,19 @@ export const Container = styled(SafeAreaView)`
   background-color: ${({ theme }) => theme.COLORS.BLACK_800};
 `;
 
-export const ContainerImage = styled.ImageBackground`
+export const ImageLogoBG = styled.ImageBackground`
+  width: 375px;
   height: 375px;
-`;
-
-export const ContentHeader = styled.View`
-  height: 104px;
-  margin-bottom: 62px;
+  top: 218px;
+  flex-shrink: 0;
 `;
 
 export const ContentInputs = styled.View`
-  min-height: 280px;
-  max-height: 340px;
-  align-items: center;
-  margin-left: 15px;
-  margin-right: 17px;
-  margin-bottom: 8px;
-  margin: 16px 0;
+  margin-left: 26px;
 `;
 
-export const TextContent = styled.Text`
-  height: 72px;
-  justify-content: flex-start;
-  align-items: center;
-  margin-left: 16px;
-  margin-right: 19px;
+export const ContainerEmailInput = styled.View`
   margin-bottom: 16px;
-`;
-
-export const Subtitle = styled.Text`
-  font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
-  font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
-  color: ${({ theme }) => theme.COLORS.WHITE};
-`;
-
-export const Title = styled.Text`
-  font-size: ${({ theme }) => theme.FONT_SIZE.XL}px;
-  font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
-  color: ${({ theme }) => theme.COLORS.BLACK_800};
-  text-align: center;
-  padding-top: 18px;
-  padding-left: 14px;
-  padding-bottom: 2px;
-`;
-
-export const Spacer = styled.View`
-  height: 44px;
 `;
 
 export const ButtonContent = styled.View`
@@ -60,4 +27,44 @@ export const ButtonContent = styled.View`
   justify-content: space-between;
   margin-left: 17px;
   margin-right: 17px;
+`;
+
+export const ContainerText = styled.View`
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const SignUpContainer = styled.TouchableOpacity``;
+export const DontLogContainer = styled.TouchableOpacity``;
+export const ForgotContainer = styled.TouchableOpacity``;
+
+export const SignUpText = styled.Text`
+  color: ${({ theme }) => theme.COLORS.WHITE};
+  font-family: ${({ theme }) => theme.FONT_FAMILY.SEMI_BOLD};
+  font-size: ${({ theme }) => theme.FONT_SIZE.MD};
+  text-align: center;
+  margin-top: 24px;
+`;
+export const ForgotPasswordText = styled.Text`
+  color: ${({ theme }) => theme.COLORS.WHITE};
+  font-family: ${({ theme }) => theme.FONT_FAMILY.SEMI_BOLD};
+  font-size: ${({ theme }) => theme.FONT_SIZE.MD};
+  text-align: center;
+  margin-top: 24px;
+`;
+
+export const DontLoginText = styled.Text`
+  color: ${({ theme }) => theme.COLORS.WHITE};
+  font-family: ${({ theme }) => theme.FONT_FAMILY.SEMI_BOLD};
+  font-size: ${({ theme }) => theme.FONT_SIZE.MD};
+  text-align: center;
+  margin-top: 24px;
+`;
+
+export const LogoComprass = styled.Image`
+  width: 263px;
+  height: 56px;
+  bottom: 64px;
+  margin-left: auto;
+  margin-right: auto;
 `;

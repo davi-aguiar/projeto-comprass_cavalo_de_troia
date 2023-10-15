@@ -4,19 +4,14 @@ import { useTheme } from "styled-components/native";
 import { Controller, useForm } from "react-hook-form";
 
 import {
+  ButtonContainer,
   ButtonContent,
   Container,
   ContainerEmailInput,
-  ContainerText,
+  ContainerPasswordInput,
   ContentInputs,
-  DontLog,
-  DontLoginText,
-  ForgotContainer,
-  ForgotPasswordText,
-  ImageLogoBG,
-  LogoComprass,
-  SignUpContainer,
-  SignUpText
+  HeaderContent,
+  ImageLogoBG
 } from "./styles";
 import { Input } from "@components/Input";
 import { Header } from "@components/Header";
@@ -27,8 +22,10 @@ import { StatusBar } from "expo-status-bar";
 import { useNavigation } from "@react-navigation/native";
 import { SignUp } from "@screens/SignUp";
 import { AuthProps } from "@routes/auth.routes";
+import { fetchAllUsers } from "../../requests/FetchAllUsers";
+import { updatePassword } from "../../requests/UpdatePassword";
 
-export function Login() {
+export function ForgotPassword() {
   type FormType = { name: string; email: string; password: string };
 
   const navigation = useNavigation<AuthProps>();
@@ -36,6 +33,11 @@ export function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = useState("");
   const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
+
+  function handleGoToLogin() {
+    navigation.navigate("Login");
+    setEmailErrorMessage("");
+  }
 
   const { colors } = useTheme();
   const {
@@ -49,38 +51,36 @@ export function Login() {
     try {
       setIsLoading(true);
 
-      const requestData = {
-        email: data.email,
-        password: data.password
-      };
-      const response = await api.post("/auth/login", {
-        email: data.email,
-        password: data.password
-      });
+      const users = await fetchAllUsers();
 
-      if (response) {
-        setIsSubmitSuccessful(true);
-        ToastAndroid.show("User Logged", ToastAndroid.LONG);
-        console.log(response);
+      const user = users.find(
+        (user: { email: string }) => user.email === data.email
+      );
+
+      if (user) {
+        updatePassword(user.id, data.password);
+        console.log(user.id);
+        ToastAndroid.show("Password updated successfully", ToastAndroid.LONG);
       } else {
-        ToastAndroid.show("", ToastAndroid.LONG);
-        // const errorData = await response();
-        // setEmailErrorMessage(errorData.error);
+        setEmailErrorMessage("Email not found");
       }
     } catch (error) {
-      console.error("Erro ao enviar o formulário:", error);
+      console.error("Error handling form submission:", error);
     } finally {
       setIsLoading(false);
     }
   };
-
   return (
     <Container>
       <StatusBar style="light" backgroundColor="#111213" />
       <ImageLogoBG source={require("../../assets/images/ImageBackground.png")}>
-        <LogoComprass
-          source={require("../../assets/images/ComprassLogo.png")}
-        />
+        <HeaderContent>
+          <Header
+            title="Forgot Password"
+            showBackButton
+            onPress={handleGoToLogin}
+          />
+        </HeaderContent>
         <ContentInputs>
           <ContainerEmailInput>
             <Controller
@@ -96,6 +96,21 @@ export function Login() {
               )}
             />
           </ContainerEmailInput>
+          <ContainerPasswordInput>
+            <Controller
+              name="password"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  label="New Password"
+                  keyboardType="default"
+                  value={value}
+                  secureTextEntry
+                  onChangeText={onChange}
+                />
+              )}
+            />
+          </ContainerPasswordInput>
           <Controller
             name="password"
             control={control}
@@ -112,28 +127,19 @@ export function Login() {
         </ContentInputs>
 
         <ButtonContent>
+          <ButtonContainer>
+            <ButtonComponent
+              title="SEARCH"
+              height={48}
+              onPress={handleSubmit(fetchAllUsers)}
+            />
+          </ButtonContainer>
           <ButtonComponent
-            title="LOGIN"
+            title="CONFIRM"
             height={48}
             onPress={handleSubmit(handleFormSubmit)}
           />
         </ButtonContent>
-
-        <ContainerText>
-          <SignUpContainer onPress={() => navigation.navigate("SignUp")}>
-            <SignUpText>Not have an account yet? {"\n"}Sign up</SignUpText>
-          </SignUpContainer>
-          <ForgotContainer
-            onPress={() => navigation.navigate("ForgotPassword")}
-          >
-            <ForgotPasswordText> Forgot your password?</ForgotPasswordText>
-          </ForgotContainer>
-          <DontLog>
-            <DontLoginText>
-              <DontLoginText> I dont Want Login</DontLoginText>
-            </DontLoginText>
-          </DontLog>
-        </ContainerText>
       </ImageLogoBG>
     </Container>
   );

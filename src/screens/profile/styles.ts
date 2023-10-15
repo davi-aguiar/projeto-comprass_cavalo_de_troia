@@ -22,7 +22,8 @@ export const Title = styled.Text`
 export const Image = styled.Image`
   border-radius: 100px;
   margin: 20px;
-  height: 144px;
+  width: 142px;
+  height: 142px;
 `;
 export const ImageConteiner = styled.View`
   align-items: center;
@@ -31,11 +32,16 @@ export const ImageConteiner = styled.View`
 export const InfosConteiner = styled.View`
   align-items: center;
 `;
-export const ProfileName = styled.TextInput`
+export const ProfileName = styled.Text`
   font-weight: 600;
   font-size: 24px;
 `;
-
+export const ProfileNameInput = styled.TextInput`
+  font-weight: 600;
+  font-size: 24px;
+  border-bottom-width: 1px;
+  padding: 1px;
+`;
 export const ProfileEmail = styled.Text`
   font-size: 14px;
   font-weight: 600;

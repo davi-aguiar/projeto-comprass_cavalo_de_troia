@@ -14,8 +14,9 @@ export const CategoryContainer = styled.View``;
 
 export const CategoryText = styled.Text`
   font-size: ${theme.FONT_SIZE.XL}px;
-  font-family: ${theme.FONT_FAMILY.EXTRA_BOLD};
-  margin-top: 21px;
+  /* font-family: ${theme.FONT_FAMILY.EXTRA_BOLD}; */
+  font-weight: 800;
+  margin-top: 16px;
   margin-bottom: 16px;
   margin-left: 16px;
 `;
@@ -31,10 +32,12 @@ export const ProductsContainer = styled.View`
 
 export const ProductItemContainer = styled.View`
   flex: 1;
-  margin: 8px;
+  margin: 16px;
   background-color: ${theme.COLORS.WHITE};
-  padding: 16px;
-  border-radius: 8px;
+  /* padding: 16px; */
+  border-radius: 6px;
+  flex-shrink: 1;
+  width: 100%;
 `;
 
 export const CounterContainer = styled.View`
@@ -52,8 +55,8 @@ export const CounterText = styled.Text`
 `;
 
 export const ProductBox = styled.View`
-  margin-left: 16px;
-  margin-right: 16px;
+  /* margin-left: 16px;
+  margin-right: 16px; */
 `;
 
 export const ProductImage = styled.Image`

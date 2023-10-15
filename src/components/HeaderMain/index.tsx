@@ -21,9 +21,8 @@ function HeaderMain() {
                     <LupaImage source={require('../../../assets/images/lupa-image.png')} />
                 </SearchButton>
                 <LogoContainer>
-                    <LogoImage source={require('../../../assets/images/c-letter.png')} />
-                    <LogoImage source={require('../../../assets/images/uol-logo.png')} />
-                    <LogoImage source={require('../../../assets/images/compass-letters.png')} />
+                    <LogoImage source={require('../../../assets/images/comprass-logo.png')} />
+                    
                 </LogoContainer>
 
                 <CartContainer>

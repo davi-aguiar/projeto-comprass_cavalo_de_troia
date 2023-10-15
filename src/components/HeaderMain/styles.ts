@@ -23,11 +23,15 @@ export const ElipseImage = styled.Image`
     top: 0;
     position: absolute;
     z-index: -1;
+    height: 41px;
+    width: 41px;
 `;
 
 export const LupaImage = styled.Image`
     top: 8px;
     right: 12px;
+    width: 22px;
+    height: 22px;
 `;
 
 export const LogoContainer = styled.View`
@@ -37,7 +41,10 @@ export const LogoContainer = styled.View`
     margin-top: 115px;
 `;
 
-export const LogoImage = styled.Image``;
+export const LogoImage = styled.Image`
+    height: 56px;
+`;
+
 
 export const CartContainer = styled.View`
     flex-direction: row;

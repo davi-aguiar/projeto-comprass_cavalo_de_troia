@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-  VerticalScrollView,
-  LoadingText,
-  CategoryContainer,
-  CategoryText,
-  HorizontalScrollView,
   ProductsContainer,
   ProductItemContainer,
   CounterContainer,
@@ -14,7 +9,13 @@ import {
   ProductBox,
   ProductImage,
   ProductName,
-  ProductPrice
+  ProductPrice,
+  VerticalScrollView,
+  LoadingText,
+  CategoryContainer,
+  CategoryText,
+  HorizontalScrollView,
+  
 } from './styles';
 
 const ProductItem = React.memo(function ProductItem({ product }) {
@@ -35,8 +36,9 @@ const ProductItem = React.memo(function ProductItem({ product }) {
           <ButtonImage source={require('../../../assets/images/add-button.png')} />
         </TouchableButton>
       </CounterContainer>
-      <ProductImage source={{ uri: images[0] }} />
+      
       <ProductBox>
+        <ProductImage source={{ uri: images[0] }} />
         <ProductName>{title}</ProductName>
         <ProductPrice>{price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</ProductPrice>
       </ProductBox>

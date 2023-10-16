@@ -28,7 +28,7 @@ import { useNavigation } from "@react-navigation/native";
 import { SignUp } from "@screens/SignUp";
 import { AuthProps } from "@routes/auth.routes";
 import { useStore } from "zustand";
-import useStoreData from "../../context";
+import useStoreData from "../../context/UserStore";
 import { Profile } from "@screens/Profile";
 
 export function Login() {

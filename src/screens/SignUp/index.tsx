@@ -19,6 +19,7 @@ import { ToastAndroid } from "react-native";
 import { UserCreation } from "../../requests/UserCreation";
 import { useNavigation } from "@react-navigation/native";
 import { AuthProps } from "@routes/auth.routes";
+import { StatusBar } from "expo-status-bar";
 
 export function SignUp() {
   type FormType = { name: string; email: string; password: string };
@@ -67,6 +68,8 @@ export function SignUp() {
 
   return (
     <Container>
+      <StatusBar style="light" backgroundColor="#111213" />
+
       <ContainerImage
         source={require("../../assets/images/ImageBackground.png")}
         resizeMode="cover"

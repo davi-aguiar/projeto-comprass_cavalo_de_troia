@@ -9,10 +9,11 @@ export const Container = styled(SafeAreaView)`
 export const ContainerImage = styled.ImageBackground`
   position: absolute;
   width: 375px;
-  justify-content: center;
+  /* justify-content: center; */
   align-self: center;
   min-height: 375px;
-  top: 64px;
+  /* top: 64px; */
+  z-index: 1;
 `;
 
 export const ContentHeader = styled.View`

@@ -30,7 +30,7 @@ import {
   Title,
   TitleConteiner
 } from "./styles";
-import useStoreData from "../../context";
+import useStoreData from "../../context/UserStore";
 
 export function Profile() {
   const [isEnabled, setIsEnabled] = useState(false);

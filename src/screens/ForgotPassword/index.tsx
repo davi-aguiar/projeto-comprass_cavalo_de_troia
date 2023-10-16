@@ -11,7 +11,9 @@ import {
   ContainerPasswordInput,
   ContentInputs,
   HeaderContent,
-  ImageLogoBG
+  ImageLogoBG,
+  Subtitle,
+  TextContent
 } from "./styles";
 import { Input } from "@components/Input";
 import { Header } from "@components/Header";
@@ -85,6 +87,13 @@ export function ForgotPassword() {
             onPress={handleGoToLogin}
           />
         </HeaderContent>
+        <TextContent>
+          <Subtitle>
+            {" "}
+            Enter your email and let us see if it exists for you to change your
+            password
+          </Subtitle>
+        </TextContent>
         <ContentInputs>
           <ContainerEmailInput>
             <Controller

@@ -23,8 +23,6 @@ export function Input({
   ...rest
 }: Props) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isPasswordField, setIsPasswordField] = useState(false);
-
   const hasError = !!errorMessage;
 
   const togglePasswordVisibility = () => {
@@ -36,14 +34,22 @@ export function Input({
       <HoshiInput
         label={label}
         {...rest}
-        secureTextEntry={isPasswordField ? isPasswordVisible : false}
+        secureTextEntry={!isPasswordVisible}
         onChangeText={onChangeText}
         value={value}
         style={{
           borderColor: hasError ? "red" : "black"
         }}
+        rightIcon={
+          showIcon && (
+            <Icon
+              name={isPasswordVisible ? "eye-off" : "eye"}
+              size={20}
+              onPress={togglePasswordVisibility}
+            />
+          )
+        }
       />
-
       {formValidation && !errorMessage && <ActivityIndicator />}
     </Container>
   );

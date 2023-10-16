@@ -1,7 +1,7 @@
 import React from "react";
 
 import { View, Text} from "react-native";
-import styled from 'styled-components/native'; // Importe styled-components
+import styled from 'styled-components/native';
 import theme from "../../theme";
 export const Container = styled(View)`
   justify-content: center;

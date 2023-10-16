@@ -1,5 +1,6 @@
 import React, { useState ,useEffect} from 'react';
-import { View} from 'react-native';
+import { View, Alert } from 'react-native';
+
 import { CheckoutHeader } from '@components/CheckoutHeader';
 import { styles as checkoutStyles, styles } from './styles';
 import OrderSummary from '@components/CheckOrderSummary';
@@ -9,6 +10,7 @@ import { ScrollView } from '@screens/CepScreen/styles';
 import DeliveryMethodSection from '@components/DeliveryMethodSection';
 import { CheckAddressBox } from '@components/CheckAdressBox';
 import PaymentSection from '@components/CheckoutPaymentBox';
+import { SucessScreen } from '@screens/SucessScreen';
 export const CheckoutScreen = ({ navigation, route }: { navigation: any, route: any }) => {
   const [isPaymentMethodModalVisible, setPaymentMethodModalVisible] = useState(false);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string | null>(null);
@@ -50,6 +52,8 @@ export const CheckoutScreen = ({ navigation, route }: { navigation: any, route: 
     navigation.navigate('CepScreen');
   };
 
+  
+
   const openPaymentMethodModal = () => {
     setPaymentMethodModalVisible(true);
   };
@@ -74,6 +78,7 @@ export const CheckoutScreen = ({ navigation, route }: { navigation: any, route: 
         onSelectPaymentMethod={(method) => {
           setSelectedPaymentMethod(method);
           closePaymentMethodModal();
+      
         }}
       />
        <DeliveryMethodSection
@@ -84,7 +89,13 @@ export const CheckoutScreen = ({ navigation, route }: { navigation: any, route: 
  <OrderSummary orderAmount="12R$" deliveryAmount="0R$" summaryAmount="137R$" />
   
   <View style={styles.containerButton}>
-  <ButtonComponent title="SUBMIT ORDER" width={343} height={48} />
+  <ButtonComponent title="SUBMIT ORDER" width={343} height={48}  onPress={() => {
+    if (selectedPaymentMethod) {
+      navigation.navigate('SucessScreen', { selectedPaymentMethod });
+    } else {
+      Alert.alert('Warning', 'Please select a payment method before proceeding.');
+    }
+  }}/>
   </View>
 
       </ScrollView>

@@ -28,10 +28,11 @@ import {
   Title,
   TitleConteiner,
 } from "./styles";
+import useStoreData from "@requests/index";
 
 export function Profile() {
   const [editIsEnabled, setEditIsEnabled] = useState(false);
-  const [name, setName] = useState("Juliane Golçalves Freitas");
+  const [name, setName] = useState("Anônimo");
   const [email, setEmail] = useState("");
   const [avatar, setAvatar] = useState(
     "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg"
@@ -39,15 +40,17 @@ export function Profile() {
   const [modalVisible, setModalVisible] = useState(false);
   const [englishSelected, setEnglishSelected] = useState(false);
   const [portugueseSelected, setPortugueseSelected] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [id, setId] = useState("");
 
   const englishTextColor = englishSelected ? "white" : "black";
   const portguesTextColor = portugueseSelected ? "white" : "black";
   const englishButtonColor = englishSelected ? "#DB3022" : "white";
   const portguesButtonColor = portugueseSelected ? "#DB3022" : "white";
 
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE0LCJpYXQiOjE2OTc0MDQ3MjIsImV4cCI6MTY5OTEzMjcyMn0.ZY3cAZ_GI9Rl3zsfS4iyW9KniuEkSh_U6YoKdfqpBfc";
+  const token = useStoreData((state) => state.token);
+  const isAuthenticated = useStoreData((state) => state.isAuthenticated);
+  const setIsAuthenticated = useStoreData((state) => state.setIsAuthenticated);
+  const setLanguage = useStoreData((state) => state.setLanguage);
 
   const config = {
     headers: { Authorization: "Bearer " + token },
@@ -64,8 +67,8 @@ export function Profile() {
         setEmail(response.data.email);
         setName(response.data.name);
         setAvatar(response.data.avatar);
+        setId(response.data.id);
       }
-      console.log(response.data);
     } catch (error) {
       alert(error);
     }
@@ -73,17 +76,13 @@ export function Profile() {
 
   async function editPerfil(id: string) {
     try {
-      console.log(name);
       const data = { name: name };
       const response = await api.put(
         `/users/${id}
         `,
         data
       );
-
-      console.log(JSON.stringify(data));
       if (response) {
-        console.log(response.data);
         setName(response.data.name);
         setAvatar(response.data.avatar);
       }
@@ -102,7 +101,10 @@ export function Profile() {
         [
           {
             text: "Yes",
-            onPress: () => setEditIsEnabled((previousState) => !previousState),
+            onPress: () => {
+              setEditIsEnabled((previousState) => !previousState);
+              handlePerfil();
+            },
             style: "destructive",
           },
           { text: "No" },
@@ -117,11 +119,13 @@ export function Profile() {
   function selectEnglish() {
     setEnglishSelected(true);
     setPortugueseSelected(false);
+    setLanguage("english");
   }
 
   function selectPortuguese() {
     setPortugueseSelected(true);
     setEnglishSelected(false);
+    setLanguage("portuguese");
   }
 
   function handleOnChangeName(newName: string) {
@@ -129,7 +133,7 @@ export function Profile() {
   }
 
   function confirmEditing() {
-    editPerfil("14");
+    editPerfil(id);
     setEditIsEnabled((previousState) => !previousState);
   }
 
@@ -140,7 +144,7 @@ export function Profile() {
       [
         {
           text: "Yes",
-          onPress: () => console.log("Deslogou"),
+          onPress: () => setIsAuthenticated(false),
           style: "destructive",
         },
         { text: "No" },

@@ -27,6 +27,9 @@ import { StatusBar } from "expo-status-bar";
 import { useNavigation } from "@react-navigation/native";
 import { SignUp } from "@screens/SignUp";
 import { AuthProps } from "@routes/auth.routes";
+import { useStore } from "zustand";
+import useStoreData from "../../context";
+import { Profile } from "@screens/Profile";
 
 export function Login() {
   type FormType = { name: string; email: string; password: string };
@@ -45,6 +48,8 @@ export function Login() {
     formState: { errors }
   } = useForm<FormType>({});
 
+  const store = useStoreData();
+
   const handleFormSubmit = async (data: FormType) => {
     try {
       setIsLoading(true);
@@ -62,6 +67,9 @@ export function Login() {
         setIsSubmitSuccessful(true);
         ToastAndroid.show("User Logged", ToastAndroid.LONG);
         console.log(response);
+
+        store.setName(data.name);
+        store.setEmail(data.email);
       } else {
         ToastAndroid.show("", ToastAndroid.LONG);
         // const errorData = await response();
@@ -71,6 +79,7 @@ export function Login() {
       console.error("Erro ao enviar o formulário:", error);
     } finally {
       setIsLoading(false);
+      navigation.navigate("Profile");
     }
   };
 
@@ -104,6 +113,7 @@ export function Login() {
                 label="Password"
                 keyboardType="default"
                 value={value}
+                showIcon
                 secureTextEntry
                 onChangeText={onChange}
               />
@@ -114,6 +124,7 @@ export function Login() {
         <ButtonContent>
           <ButtonComponent
             title="LOGIN"
+            isLoading={isLoading}
             height={48}
             onPress={handleSubmit(handleFormSubmit)}
           />

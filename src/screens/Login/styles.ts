@@ -42,14 +42,14 @@ export const ForgotContainer = styled.TouchableOpacity``;
 export const SignUpText = styled.Text`
   color: ${({ theme }) => theme.COLORS.WHITE};
   font-family: ${({ theme }) => theme.FONT_FAMILY.SEMI_BOLD};
-  font-size: ${({ theme }) => theme.FONT_SIZE.MD};
+  font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
   text-align: center;
   margin-top: 24px;
 `;
 export const ForgotPasswordText = styled.Text`
   color: ${({ theme }) => theme.COLORS.WHITE};
   font-family: ${({ theme }) => theme.FONT_FAMILY.SEMI_BOLD};
-  font-size: ${({ theme }) => theme.FONT_SIZE.MD};
+  font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
   text-align: center;
   margin-top: 24px;
 `;
@@ -57,7 +57,7 @@ export const ForgotPasswordText = styled.Text`
 export const DontLoginText = styled.Text`
   color: ${({ theme }) => theme.COLORS.WHITE};
   font-family: ${({ theme }) => theme.FONT_FAMILY.SEMI_BOLD};
-  font-size: ${({ theme }) => theme.FONT_SIZE.MD};
+  font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
   text-align: center;
   margin-top: 24px;
 `;

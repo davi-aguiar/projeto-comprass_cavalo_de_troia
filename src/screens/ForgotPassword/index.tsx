@@ -26,11 +26,12 @@ import { fetchAllUsers } from "../../requests/FetchAllUsers";
 import { updatePassword } from "../../requests/UpdatePassword";
 
 export function ForgotPassword() {
-  type FormType = { name: string; email: string; password: string };
+  type FormType = { email: string; password: string };
 
   const navigation = useNavigation<AuthProps>();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [user, setUser] = useState<any>(false);
   const [emailErrorMessage, setEmailErrorMessage] = useState("");
   const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
 
@@ -51,12 +52,6 @@ export function ForgotPassword() {
     try {
       setIsLoading(true);
 
-      const users = await fetchAllUsers();
-
-      const user = users.find(
-        (user: { email: string }) => user.email === data.email
-      );
-
       if (user) {
         updatePassword(user.id, data.password);
         console.log(user.id);
@@ -70,6 +65,15 @@ export function ForgotPassword() {
       setIsLoading(false);
     }
   };
+
+  async function SearchUserByEmail({ email }: FormType) {
+    const users = await fetchAllUsers();
+
+    const userResponse = users.find(
+      (user: { email: string }) => user.email === email
+    );
+    setUser(userResponse);
+  }
   return (
     <Container>
       <StatusBar style="light" backgroundColor="#111213" />
@@ -131,7 +135,7 @@ export function ForgotPassword() {
             <ButtonComponent
               title="SEARCH"
               height={48}
-              onPress={handleSubmit(fetchAllUsers)}
+              onPress={handleSubmit(SearchUserByEmail)}
             />
           </ButtonContainer>
           <ButtonComponent

@@ -30,6 +30,7 @@ import {
   Title,
   TitleConteiner
 } from "./styles";
+import useStoreData from "../../context";
 
 export function Profile() {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -65,6 +66,7 @@ export function Profile() {
   function logOut() {
     console.log("deslogou");
   }
+  const store = useStoreData();
 
   return (
     <Container>
@@ -93,9 +95,9 @@ export function Profile() {
             onChangeText={handleOnChangeName}
           ></ProfileName>
         ) : (
-          <ProfileName>{name}</ProfileName>
+          <ProfileName>{store.name}</ProfileName>
         )}
-        <ProfileEmail>matildabrown@mail.com</ProfileEmail>
+        <ProfileEmail>{store.email}</ProfileEmail>
       </View>
 
       <ConteinerOptions>

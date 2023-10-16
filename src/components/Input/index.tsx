@@ -1,33 +1,50 @@
 import React, { useState } from "react";
-import { TextInputProps } from "react-native";
-import { HoshiProps } from "react-native-textinput-effects";
-import { Container, HoshiInput } from "./styles";
-
+import { ActivityIndicator, TextInputProps } from "react-native";
+import { Hoshi, HoshiProps } from "react-native-textinput-effects";
+import { Container, HoshiInput, Icon } from "./styles";
 import { useTheme } from "styled-components";
+import { Eye } from "phosphor-react-native";
 
 type Props = HoshiProps &
   TextInputProps & {
     label: string;
     errorMessage?: string | null;
-    icon?: boolean;
+    showIcon?: boolean;
     formValidation?: boolean;
   };
 
 export function Input({
   label,
-  icon,
+  showIcon,
   errorMessage,
+  onChangeText,
   value,
   formValidation,
   ...rest
 }: Props) {
-  const [isFocused, setIsFocused] = useState(false);
-  const showErrorIcon = !!errorMessage;
-  const hasValue = value && value.trim() !== "";
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isPasswordField, setIsPasswordField] = useState(false);
+
+  const hasError = !!errorMessage;
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible((prevState) => !prevState);
+  };
 
   return (
     <Container>
-      <HoshiInput label={label} {...rest} />
+      <HoshiInput
+        label={label}
+        {...rest}
+        secureTextEntry={isPasswordField ? isPasswordVisible : false}
+        onChangeText={onChangeText}
+        value={value}
+        style={{
+          borderColor: hasError ? "red" : "black"
+        }}
+      />
+
+      {formValidation && !errorMessage && <ActivityIndicator />}
     </Container>
   );
 }

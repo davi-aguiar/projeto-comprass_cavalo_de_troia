@@ -1,11 +1,17 @@
 import styled from "styled-components/native";
 import { Hoshi } from "react-native-textinput-effects";
-import { CaretLeft } from "phosphor-react-native";
+import { CaretLeft, Eye } from "phosphor-react-native";
 
 export const Container = styled.View`
   flex-direction: row;
   align-items: center;
 `;
+
+export const Icon = styled(Eye).attrs(({ theme }) => ({
+  size: theme.FONT_SIZE.LG,
+  color: theme.COLORS.WHITE,
+  weight: "bold"
+}))``;
 
 export const HoshiInput = styled(Hoshi).attrs(({ theme }) => ({
   borderHeight: 0,

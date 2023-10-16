@@ -6,12 +6,14 @@ import {
 import { ForgotPassword } from "@screens/ForgotPassword";
 
 import { Login } from "@screens/Login";
+import { Profile } from "@screens/Profile";
 import { SignUp } from "@screens/SignUp";
 
 type RoutesAuthentication = {
   Login: undefined;
   SignUp: undefined;
   ForgotPassword: undefined;
+  Profile: undefined;
 };
 
 export type AuthProps = NativeStackNavigationProp<RoutesAuthentication>;
@@ -25,6 +27,7 @@ export function AuthRoutes() {
       <Screen name="SignUp" component={SignUp} />
       <Screen name="Login" component={Login} />
       <Screen name="ForgotPassword" component={ForgotPassword} />
+      <Screen name="Profile" component={Profile} />
     </Navigator>
   );
 }

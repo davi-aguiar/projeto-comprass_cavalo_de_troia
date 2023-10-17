@@ -17,6 +17,7 @@ import { AuthRoutes } from "@routes/auth.routes";
 import { Profile } from "@screens/Profile";
 import { Loading } from "@components/Loading";
 import { ForgotPassword } from "@screens/ForgotPassword";
+import { Routes } from "@routes/index";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -30,7 +31,6 @@ export default function App() {
     <NavigationContainer>
       <ThemeProvider theme={theme}>
         {fontsLoaded ? <AuthRoutes /> : <Loading />}
-
         <StatusBar style="auto" />
       </ThemeProvider>
     </NavigationContainer>

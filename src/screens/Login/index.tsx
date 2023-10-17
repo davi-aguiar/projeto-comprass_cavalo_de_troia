@@ -16,7 +16,7 @@ import {
   ImageLogoBG,
   LogoComprass,
   SignUpContainer,
-  SignUpText
+  SignUpText,
 } from "./styles";
 import { Input } from "@components/Input";
 import { ButtonComponent } from "@components/Buttons";
@@ -28,13 +28,16 @@ import { AuthProps } from "@routes/auth.routes";
 import { useStore } from "zustand";
 import { yupResolver } from "@hookform/resolvers/yup";
 import useStoreData from "../../context/UserStore";
+import authData from "../../context/index";
 import { loginSchema } from "@utils/Validations/SignIn";
 
 export function Login() {
   type FormType = { email: string; password: string };
 
   const navigation = useNavigation<AuthProps>();
-
+  const setToken = authData((state) => state.setToken);
+  const setisAuthenticated = authData((state) => state.setIsAuthenticated);
+  const token = authData((state) => state.token);
   const [isLoading, setIsLoading] = useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = useState("");
   const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
@@ -44,9 +47,9 @@ export function Login() {
     control,
     handleSubmit,
     reset,
-    formState: { errors }
+    formState: { errors },
   } = useForm<FormType>({
-    resolver: yupResolver(loginSchema)
+    resolver: yupResolver(loginSchema),
   });
 
   const store = useStoreData();
@@ -54,20 +57,21 @@ export function Login() {
   const handleFormSubmit = async (data: FormType) => {
     try {
       setIsLoading(true);
-
       const requestData = {
         email: data.email,
-        password: data.password
+        password: data.password,
       };
       const response = await api.post("/auth/login", {
         email: data.email,
-        password: data.password
+        password: data.password,
       });
 
       if (response) {
+        setToken(response.data.access_token);
+        setisAuthenticated(true);
         setIsSubmitSuccessful(true);
         ToastAndroid.show("User Logged", ToastAndroid.LONG);
-        navigation.navigate("Profile");
+        navigation.navigate("AppRoutes");
 
         store.setName(data.name);
         store.setEmail(data.email);
@@ -145,7 +149,7 @@ export function Login() {
           >
             <ForgotPasswordText> Forgot your password?</ForgotPasswordText>
           </ForgotContainer>
-          <DontLog>
+          <DontLog onPress={() => navigation.navigate("AppRoutes")}>
             <DontLoginText>
               <DontLoginText> I dont Want Login</DontLoginText>
             </DontLoginText>

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Switch, TouchableOpacity, Modal, Alert } from "react-native";
 import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import { api } from "@services/API";
+import { useNavigation } from "@react-navigation/native";
+import { AuthProps } from "@routes/auth.routes";
 import {
   CenteredView,
   ConfirmButton,
@@ -28,9 +30,10 @@ import {
   Title,
   TitleConteiner,
 } from "./styles";
-import useStoreData from "../../context/index";
+import authData from "../../context/index";
 
 export function Profile() {
+  const navigation = useNavigation<AuthProps>();
   const [editIsEnabled, setEditIsEnabled] = useState(false);
   const [name, setName] = useState("Anônimo");
   const [email, setEmail] = useState("");
@@ -47,18 +50,20 @@ export function Profile() {
   const englishButtonColor = englishSelected ? "#DB3022" : "white";
   const portguesButtonColor = portugueseSelected ? "#DB3022" : "white";
 
-  const token = useStoreData((state) => state.token);
-  const isAuthenticated = useStoreData((state) => state.isAuthenticated);
-  const setIsAuthenticated = useStoreData((state) => state.setIsAuthenticated);
-  const setLanguage = useStoreData((state) => state.setLanguage);
+  const token = authData((state) => state.token);
+  const isAuthenticated = authData((state) => state.isAuthenticated);
+  const setIsAuthenticated = authData((state) => state.setIsAuthenticated);
+  const setLanguage = authData((state) => state.setLanguage);
 
   const config = {
     headers: { Authorization: "Bearer " + token },
   };
 
-  useEffect(() => {
-    handlePerfil();
-  }, []);
+  if (isAuthenticated) {
+    useEffect(() => {
+      handlePerfil();
+    }, []);
+  }
 
   async function handlePerfil() {
     try {
@@ -144,7 +149,12 @@ export function Profile() {
       [
         {
           text: "Yes",
-          onPress: () => setIsAuthenticated(false),
+
+          onPress: () => {
+            navigation.navigate("Login");
+            setIsAuthenticated(false);
+          },
+
           style: "destructive",
         },
         { text: "No" },

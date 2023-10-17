@@ -1,7 +1,6 @@
 import { create } from "zustand";
 
 interface StoreStates {
-  id: string;
   name: string;
   email: string;
   setEmail: (email: string) => void;
@@ -15,7 +14,7 @@ const useStoreData = create<StoreStates>(
       email: "Email",
       id: "teste",
       setEmail: (email: string) => set((state) => ({ ...state, email })),
-      setName: (name: string) => set((state) => ({ ...state, name }))
+      setName: (name: string) => set((state) => ({ ...state, name })),
     }
 );
 

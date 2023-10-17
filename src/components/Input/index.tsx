@@ -9,7 +9,7 @@ import {
   SuccessIcon,
   ErrorIcon,
   HoshiInput,
-  HidePassword
+  HidePassword,
 } from "./styles";
 
 import EyeSVG from "@assets/icons/EyeOpen.svg";
@@ -52,20 +52,12 @@ export function Input({
 
   const hasValue = value && value.trim() !== "";
 
-  const labelStyle = {
-    fontFamily: FONT_FAMILY.REGULAR,
-    fontSize: isFocused || hasValue ? FONT_SIZE.XS : FONT_SIZE.SM,
-    top: isFocused || hasValue ? 10 : -4,
-    color: COLORS.GRAY_500
-  };
-
   return (
     <>
       <Container>
         <HoshiInput
           secureTextEntry={isPasswordField ? isPasswordVisible : false}
           label={label}
-          labelStyle={labelStyle}
           style={{
             borderColor: errorMessage
               ? COLORS.RED_500
@@ -82,7 +74,7 @@ export function Input({
               : undefined,
             backgroundColor: isDisabled ? COLORS.GRAY_100 : COLORS.WHITE,
             borderWidth: border ? 1 : 2,
-            borderBottomWidth: border ? 1 : 2
+            borderBottomWidth: border ? 1 : 2,
           }}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}

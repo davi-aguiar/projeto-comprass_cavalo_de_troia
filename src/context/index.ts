@@ -9,13 +9,12 @@ interface StoreStates {
   setIsAuthenticated: (isAuthenticated: boolean) => void;
 }
 
-const useStoreData = create<StoreStates>(
+const authData = create<StoreStates>(
   (set): StoreStates =>
     <StoreStates>{
       language: "",
-      token:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEzLCJpYXQiOjE2OTc0ODAyMjgsImV4cCI6MTY5OTIwODIyOH0.z9J7CtBxBBVjBjaSKSeJwBbSOc_AIWgZwN3MLNR-3BA",
-      isAuthenticated: true,
+      token: "",
+      isAuthenticated: false,
       setLanguage: (language: string) =>
         set((state) => ({ ...state, language })),
       setToken: (token: string) => set((state) => ({ ...state, token })),
@@ -24,4 +23,4 @@ const useStoreData = create<StoreStates>(
     }
 );
 
-export default useStoreData;
+export default authData;

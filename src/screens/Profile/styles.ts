@@ -6,7 +6,7 @@ var width = Dimensions.get("window").width;
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
-  background-color: ${({ theme }) => theme.COLORS.WHITE};
+  background-color: white;
   align-items: "center";
   justify-content: flex-start;
   padding: 30px;
@@ -16,20 +16,32 @@ export const Title = styled.Text`
   font-weight: 800;
   font-size: 32px;
   align-items: flex-start;
-  margin-horizontal: 20px;
+  margin-left: 20px;
 `;
 
 export const Image = styled.Image`
   border-radius: 100px;
   margin: 20px;
-  height: 144px;
+  width: 142px;
+  height: 142px;
 `;
-
-export const ProfileName = styled.TextInput`
+export const ImageConteiner = styled.View`
+  align-items: center;
+  justify-content: center;
+`;
+export const InfosConteiner = styled.View`
+  align-items: center;
+`;
+export const ProfileName = styled.Text`
   font-weight: 600;
   font-size: 24px;
 `;
-
+export const ProfileNameInput = styled.TextInput`
+  font-weight: 600;
+  font-size: 24px;
+  border-bottom-width: 1px;
+  padding: 1px;
+`;
 export const ProfileEmail = styled.Text`
   font-size: 14px;
   font-weight: 600;
@@ -86,6 +98,8 @@ export const EditButton = styled.TouchableOpacity`
   width: 46px;
   margin: 20px;
   position: absolute;
+  right: 95px;
+  bottom: 90px;
 `;
 
 export const CenteredView = styled.Pressable`
@@ -115,20 +129,12 @@ export const ModalTextsSelected = styled.Text`
   color: white;
 `;
 
-export const ModalButtonsSelected = styled.TouchableOpacity`
+export const ModalButton = styled.TouchableOpacity<{ color: string }>`
   justify-content: center;
   height: 50px;
-  background-color: #db3022;
+  background-color: ${(props) => props.color};
   width: ${width}px;
-  paddinghorizontal: 20px;
-`;
-
-export const ModalButtonsUnselected = styled.TouchableOpacity`
-  justify-content: center;
-  height: 50px;
-  background-color: white;
-  width: ${width}px;
-  paddinghorizontal: 20px;
+  padding-left: 20px;
 `;
 
 export const StyledText = styled.Text<{ color: string }>`
@@ -138,14 +144,33 @@ export const StyledText = styled.Text<{ color: string }>`
   padding: 0;
   color: ${(props) => props.color};
 `;
-export const StyledTextRed = styled.Text`
-  font-size: 16px;
-  font-weight: 400;
-  margin: 0;
-  padding: 0;
-  color: "red";
-`;
 export const ConteinerImage = styled.View`
+  align-items: flex-end;
+`;
+
+export const ConteinerLogin = styled.View`
+  height: 400px;
   align-items: center;
-  /* margin-left: 167; */
+  justify-content: center;
+`;
+
+export const TextLogin = styled.Text`
+  font-size: 16px;
+  font-weight: 600;
+  margin: 10px;
+`;
+
+export const LoginButton = styled.TouchableOpacity`
+  background-color: #ff0024;
+  width: 136px;
+  height: 48px;
+  border-radius: 25px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const LoginButtonText = styled.Text`
+  color: white;
+  font-size: 16px;
+  font-weight: 800;
 `;

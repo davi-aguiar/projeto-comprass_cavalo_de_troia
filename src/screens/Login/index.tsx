@@ -19,20 +19,19 @@ import {
   SignUpText
 } from "./styles";
 import { Input } from "@components/Input";
-import { Header } from "@components/Header";
 import { ButtonComponent } from "@components/Buttons";
 import { ToastAndroid, View } from "react-native";
 import { api } from "@services/API";
 import { StatusBar } from "expo-status-bar";
 import { useNavigation } from "@react-navigation/native";
-import { SignUp } from "@screens/SignUp";
 import { AuthProps } from "@routes/auth.routes";
 import { useStore } from "zustand";
+import { yupResolver } from "@hookform/resolvers/yup";
 import useStoreData from "../../context/UserStore";
-import { Profile } from "@screens/Profile";
+import { loginSchema } from "@utils/Validations/SignIn";
 
 export function Login() {
-  type FormType = { name: string; email: string; password: string };
+  type FormType = { email: string; password: string };
 
   const navigation = useNavigation<AuthProps>();
 
@@ -46,7 +45,9 @@ export function Login() {
     handleSubmit,
     reset,
     formState: { errors }
-  } = useForm<FormType>({});
+  } = useForm<FormType>({
+    resolver: yupResolver(loginSchema)
+  });
 
   const store = useStoreData();
 
@@ -66,20 +67,19 @@ export function Login() {
       if (response) {
         setIsSubmitSuccessful(true);
         ToastAndroid.show("User Logged", ToastAndroid.LONG);
-        console.log(response);
+        navigation.navigate("Profile");
 
         store.setName(data.name);
         store.setEmail(data.email);
       } else {
-        ToastAndroid.show("", ToastAndroid.LONG);
-        // const errorData = await response();
-        // setEmailErrorMessage(errorData.error);
+        ToastAndroid.show(
+          "Something went wrong, check the inputs",
+          ToastAndroid.LONG
+        );
       }
     } catch (error) {
-      console.error("Erro ao enviar o formulário:", error);
     } finally {
       setIsLoading(false);
-      navigation.navigate("Profile");
     }
   };
 
@@ -100,7 +100,10 @@ export function Login() {
                   label="Email"
                   keyboardType="default"
                   value={value}
+                  showIcon
                   onChangeText={onChange}
+                  isDisabled={false}
+                  errorMessage={errors.email?.message}
                 />
               )}
             />
@@ -113,9 +116,11 @@ export function Login() {
                 label="Password"
                 keyboardType="default"
                 value={value}
-                showIcon
                 secureTextEntry
                 onChangeText={onChange}
+                isPasswordField
+                isDisabled={false}
+                errorMessage={errors.password?.message}
               />
             )}
           />
@@ -126,6 +131,7 @@ export function Login() {
             title="LOGIN"
             isLoading={isLoading}
             height={48}
+            width={343}
             onPress={handleSubmit(handleFormSubmit)}
           />
         </ButtonContent>

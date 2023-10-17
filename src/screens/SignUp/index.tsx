@@ -6,7 +6,10 @@ import { Controller, useForm } from "react-hook-form";
 import {
   ButtonContent,
   Container,
+  ContainerEmail,
   ContainerImage,
+  ContainerName,
+  ContainerPassword,
   ContentHeader,
   ContentInputs,
   Subtitle,
@@ -15,14 +18,21 @@ import {
 import { Input } from "@components/Input";
 import { Header } from "@components/Header";
 import { ButtonComponent } from "@components/Buttons";
-import { ToastAndroid } from "react-native";
+import { ScrollView, ToastAndroid } from "react-native";
 import { UserCreation } from "../../requests/UserCreation";
 import { useNavigation } from "@react-navigation/native";
 import { AuthProps } from "@routes/auth.routes";
 import { StatusBar } from "expo-status-bar";
+import { signUpSchema } from "@utils/Validations/SignUpSchema";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export function SignUp() {
-  type FormType = { name: string; email: string; password: string };
+  type FormType = {
+    name: string;
+    email: string;
+    password: string;
+    confirm_password: string;
+  };
 
   const navigation = useNavigation<AuthProps>();
 
@@ -36,7 +46,9 @@ export function SignUp() {
     handleSubmit,
     reset,
     formState: { errors }
-  } = useForm<FormType>({});
+  } = useForm<FormType>({
+    resolver: yupResolver(signUpSchema)
+  });
 
   function handleGoToLogin() {
     navigation.navigate("Login");
@@ -54,8 +66,6 @@ export function SignUp() {
 
       setIsSubmitSuccessful(true);
       ToastAndroid.show("User created", ToastAndroid.LONG);
-      // const errorData = await response();
-      // setEmailErrorMessage(errorData.error);
     } catch (error) {
       ToastAndroid.show(
         "User not created,something went wrong",
@@ -68,85 +78,106 @@ export function SignUp() {
 
   return (
     <Container>
-      <StatusBar style="light" backgroundColor="#111213" />
-
-      <ContainerImage
-        source={require("../../assets/images/ImageBackground.png")}
-        resizeMode="cover"
+      <ScrollView
+        showsVerticalScrollIndicator
+        contentContainerStyle={{ flexGrow: 1 }}
       >
-        <ContentHeader>
-          <Header title="SignUp" showBackButton onPress={handleGoToLogin} />
-        </ContentHeader>
+        <StatusBar style="light" backgroundColor="#111213" />
 
-        <TextContent>
-          <Subtitle>
-            {" "}
-            Choose a really cool name that only contains spaces as special
-            characters. Oh, and your password must have more than 4 digits!
-          </Subtitle>
-        </TextContent>
+        <ContainerImage
+          source={require("../../assets/images/ImageBackground.png")}
+          resizeMode="cover"
+        >
+          <ContentHeader>
+            <Header title="SignUp" showBackButton onPress={handleGoToLogin} />
+          </ContentHeader>
 
-        <ContentInputs>
-          <Controller
-            name="name"
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <Input
-                label="Name"
-                keyboardType="default"
-                value={value}
-                onChangeText={onChange}
-              />
-            )}
-          />
-          <Controller
-            name="email"
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <Input
-                label="Email"
-                keyboardType="default"
-                value={value}
-                onChangeText={onChange}
-              />
-            )}
-          />
-          <Controller
-            name="password"
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <Input
-                label="Password"
-                keyboardType="default"
-                secureTextEntry
-                value={value}
-                onChangeText={onChange}
-              />
-            )}
-          />
-          <Controller
-            name="password"
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <Input
-                label="Confirm your password"
-                keyboardType="default"
-                secureTextEntry
-                value={value}
-                onChangeText={onChange}
-              />
-            )}
-          />
-        </ContentInputs>
+          <TextContent>
+            <Subtitle>
+              {" "}
+              Choose a really cool name that only contains spaces as special
+              characters. Oh, and your password must have more than 4 digits!
+            </Subtitle>
+          </TextContent>
 
-        <ButtonContent>
-          <ButtonComponent
-            title="SIGN UP"
-            height={48}
-            onPress={handleSubmit(handleFormSubmit)}
-          />
-        </ButtonContent>
-      </ContainerImage>
+          <ContentInputs>
+            <ContainerName>
+              <Controller
+                name="name"
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <Input
+                    label="Name"
+                    keyboardType="default"
+                    value={value}
+                    onChangeText={onChange}
+                    showIcon
+                    errorMessage={errors.name?.message}
+                  />
+                )}
+              />
+            </ContainerName>
+
+            <ContainerEmail>
+              <Controller
+                name="email"
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <Input
+                    label="Email"
+                    keyboardType="email-address"
+                    value={value}
+                    showIcon
+                    onChangeText={onChange}
+                    errorMessage={errors.email?.message}
+                  />
+                )}
+              />
+            </ContainerEmail>
+
+            <ContainerPassword>
+              <Controller
+                name="password"
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <Input
+                    label="Password"
+                    keyboardType="default"
+                    secureTextEntry
+                    value={value}
+                    onChangeText={onChange}
+                    isPasswordField
+                    errorMessage={errors.password?.message}
+                  />
+                )}
+              />
+            </ContainerPassword>
+            <Controller
+              name="confirm_password"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  label="Confirm your password"
+                  keyboardType="default"
+                  secureTextEntry
+                  value={value}
+                  isPasswordField
+                  onChangeText={onChange}
+                  errorMessage={errors.password?.message}
+                />
+              )}
+            />
+          </ContentInputs>
+
+          <ButtonContent>
+            <ButtonComponent
+              title="SIGN UP"
+              height={48}
+              onPress={handleSubmit(handleFormSubmit)}
+            />
+          </ButtonContent>
+        </ContainerImage>
+      </ScrollView>
     </Container>
   );
 }

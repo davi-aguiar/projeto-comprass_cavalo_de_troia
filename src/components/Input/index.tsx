@@ -1,56 +1,115 @@
 import React, { useState } from "react";
-import { ActivityIndicator, TextInputProps } from "react-native";
-import { Hoshi, HoshiProps } from "react-native-textinput-effects";
-import { Container, HoshiInput, Icon } from "./styles";
-import { useTheme } from "styled-components";
-import { Eye } from "phosphor-react-native";
+import { StyleProp, TextInputProps, TextStyle } from "react-native";
+import { useTheme } from "styled-components/native";
 
-type Props = HoshiProps &
-  TextInputProps & {
+import { HoshiProps } from "react-native-textinput-effects";
+
+import {
+  Container,
+  SuccessIcon,
+  ErrorIcon,
+  HoshiInput,
+  HidePassword
+} from "./styles";
+
+import EyeSVG from "@assets/icons/EyeOpen.svg";
+import EyeOffSVG from "@assets/icons/eye-closed-svgrepo-com 1.svg";
+import IconLoading from "@assets/icons/loading.svg";
+
+type Props = TextInputProps &
+  HoshiProps & {
     label: string;
-    errorMessage?: string | null;
     showIcon?: boolean;
-    formValidation?: boolean;
+    errorMessage?: string | null;
+    formSubmitted?: boolean;
+    isSearch?: boolean;
+    isPasswordField?: boolean;
+    isDisabled?: boolean;
+    border?: boolean;
   };
 
 export function Input({
   label,
   showIcon,
-  errorMessage,
   onChangeText,
   value,
-  formValidation,
+  errorMessage,
+  formSubmitted,
+  isSearch,
+  isPasswordField,
+  isDisabled,
+  border,
   ...rest
 }: Props) {
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const hasError = !!errorMessage;
+  const [isFocused, setIsFocused] = useState(false);
+  const [isPasswordVisible, setPasswordVisibility] = useState(true);
+
+  const { COLORS, FONT_SIZE, FONT_FAMILY } = useTheme();
 
   const togglePasswordVisibility = () => {
-    setIsPasswordVisible((prevState) => !prevState);
+    setPasswordVisibility(!isPasswordVisible);
+  };
+
+  const hasValue = value && value.trim() !== "";
+
+  const labelStyle = {
+    fontFamily: FONT_FAMILY.REGULAR,
+    fontSize: isFocused || hasValue ? FONT_SIZE.XS : FONT_SIZE.SM,
+    top: isFocused || hasValue ? 10 : -4,
+    color: COLORS.GRAY_500
   };
 
   return (
-    <Container>
-      <HoshiInput
-        label={label}
-        {...rest}
-        secureTextEntry={!isPasswordVisible}
-        onChangeText={onChangeText}
-        value={value}
-        style={{
-          borderColor: hasError ? "red" : "black"
-        }}
-        rightIcon={
-          showIcon && (
-            <Icon
-              name={isPasswordVisible ? "eye-off" : "eye"}
-              size={20}
-              onPress={togglePasswordVisibility}
-            />
-          )
-        }
-      />
-      {formValidation && !errorMessage && <ActivityIndicator />}
-    </Container>
+    <>
+      <Container>
+        <HoshiInput
+          secureTextEntry={isPasswordField ? isPasswordVisible : false}
+          label={label}
+          labelStyle={labelStyle}
+          style={{
+            borderColor: errorMessage
+              ? COLORS.RED_500
+              : isDisabled
+              ? COLORS.GRAY_100
+              : formSubmitted &&
+                !errorMessage &&
+                hasValue &&
+                showIcon &&
+                !isSearch
+              ? COLORS.GREEN
+              : border
+              ? COLORS.GRAY_100
+              : undefined,
+            backgroundColor: isDisabled ? COLORS.GRAY_100 : COLORS.WHITE,
+            borderWidth: border ? 1 : 2,
+            borderBottomWidth: border ? 1 : 2
+          }}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          onChangeText={onChangeText}
+          value={value}
+          editable={!isDisabled}
+          {...rest}
+        />
+        {isSearch && showIcon ? (
+          <IconLoading accessibilityHint="loading-icon" />
+        ) : (
+          (formSubmitted && !errorMessage && hasValue && showIcon && (
+            <SuccessIcon />
+          )) ||
+          (errorMessage && showIcon && <ErrorIcon />)
+        )}
+
+        {isPasswordField && !isDisabled && (
+          <HidePassword onPress={togglePasswordVisibility}>
+            {isPasswordVisible ? (
+              <EyeOffSVG width={25} accessibilityHint="eye-closed-icon" />
+            ) : (
+              <EyeSVG width={25} />
+            )}
+          </HidePassword>
+        )}
+      </Container>
+    </>
   );
 }

@@ -16,7 +16,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { AuthRoutes } from "@routes/auth.routes";
 import { Profile } from "@screens/Profile";
 import { Loading } from "@components/Loading";
-import { Cart } from "@screens/CartScreen";
+import { ForgotPassword } from "@screens/ForgotPassword";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -29,7 +29,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <ThemeProvider theme={theme}>
-        {fontsLoaded ? <Cart /> : <Loading />}
+        {fontsLoaded ? <AuthRoutes /> : <Loading />}
 
         <StatusBar style="auto" />
       </ThemeProvider>

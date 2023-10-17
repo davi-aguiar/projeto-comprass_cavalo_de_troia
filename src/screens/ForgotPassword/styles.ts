@@ -10,12 +10,13 @@ export const Container = styled(SafeAreaView)`
 export const ImageLogoBG = styled.ImageBackground`
   width: 375px;
   height: 375px;
-  z-index: 1;
+  top: 218px;
   flex-shrink: 0;
 `;
 
 export const ContentInputs = styled.View`
-  margin-left: 26px;
+  bottom: 200px;
+  margin-left: 16px;
 `;
 
 export const ContainerEmailInput = styled.View`
@@ -27,11 +28,11 @@ export const ContainerPasswordInput = styled.View`
 `;
 
 export const ButtonContent = styled.View`
-  top: 60px;
   height: 100px;
   justify-content: space-between;
   margin-left: 17px;
   margin-right: 17px;
+  bottom: 80px;
 `;
 export const ButtonContainer = styled.View`
   margin-bottom: 16px;
@@ -39,6 +40,7 @@ export const ButtonContainer = styled.View`
 export const HeaderContent = styled.View`
   height: 104px;
   margin-bottom: 62px;
+  bottom: 200px;
 `;
 
 export const TextContent = styled.Text`
@@ -48,6 +50,7 @@ export const TextContent = styled.Text`
   margin-left: 16px;
   margin-right: 19px;
   margin-bottom: 16px;
+  bottom: 202px;
 `;
 
 export const Subtitle = styled.Text`

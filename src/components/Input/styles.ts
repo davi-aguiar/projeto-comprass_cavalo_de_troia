@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 import { Hoshi } from "react-native-textinput-effects";
-import { CaretLeft, Eye } from "phosphor-react-native";
+import { CaretLeft, Check, Eye, X } from "phosphor-react-native";
 
 export const Container = styled.View`
   flex-direction: row;
@@ -22,6 +22,11 @@ export const HoshiInput = styled(Hoshi).attrs(({ theme }) => ({
     fontSize: theme.FONT_SIZE.MD,
     fontFamily: theme.FONT_FAMILY.BLACK,
     bottom: 2
+  },
+  labelStyle: {
+    color: theme.COLORS.GRAY_900,
+    fontFamily: theme.FONT_FAMILY.REGULAR,
+    bottom: 2
   }
 }))`
   flex: 1;
@@ -37,8 +42,25 @@ export const HoshiInput = styled(Hoshi).attrs(({ theme }) => ({
   elevation: 1;
 `;
 
-export const BackIcon = styled(CaretLeft).attrs(({ theme }) => ({
+export const SuccessIcon = styled(Check).attrs(({ theme }) => ({
   size: theme.FONT_SIZE.LG,
-  color: theme.COLORS.WHITE,
+  color: theme.COLORS.GREEN,
   weight: "bold"
-}))``;
+}))`
+  position: absolute;
+  right: 20px;
+`;
+
+export const ErrorIcon = styled(X).attrs(({ theme }) => ({
+  size: theme.FONT_SIZE.XMD,
+  color: theme.COLORS.RED_500,
+  weight: "bold"
+}))`
+  position: absolute;
+  right: 20px;
+`;
+
+export const HidePassword = styled.TouchableOpacity`
+  position: absolute;
+  right: 24px;
+`;

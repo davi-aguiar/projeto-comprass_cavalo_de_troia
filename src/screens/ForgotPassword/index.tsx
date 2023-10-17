@@ -26,14 +26,19 @@ import { SignUp } from "@screens/SignUp";
 import { AuthProps } from "@routes/auth.routes";
 import { fetchAllUsers } from "../../requests/FetchAllUsers";
 import { updatePassword } from "../../requests/UpdatePassword";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { forgotPasswordSchema } from "@utils/Validations/ForgotPasswordSchema";
 
 export function ForgotPassword() {
-  type FormType = { email: string; password: string };
+  type FormType = { email: string; password: string; confirm_password: string };
 
   const navigation = useNavigation<AuthProps>();
 
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState<any>(false);
+  const [checkEmail, setCheckEmail] = useState(true);
+  const [isLoadingEmail, setIsLoadingEmail] = useState(false);
+
   const [emailErrorMessage, setEmailErrorMessage] = useState("");
   const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
 
@@ -48,7 +53,9 @@ export function ForgotPassword() {
     handleSubmit,
     reset,
     formState: { errors }
-  } = useForm<FormType>({});
+  } = useForm<FormType>({
+    resolver: yupResolver(forgotPasswordSchema)
+  });
 
   const handleFormSubmit = async (data: FormType) => {
     try {
@@ -94,6 +101,7 @@ export function ForgotPassword() {
             password
           </Subtitle>
         </TextContent>
+
         <ContentInputs>
           <ContainerEmailInput>
             <Controller
@@ -105,6 +113,7 @@ export function ForgotPassword() {
                   keyboardType="default"
                   value={value}
                   onChangeText={onChange}
+                  errorMessage={errors.email?.message}
                 />
               )}
             />
@@ -120,12 +129,14 @@ export function ForgotPassword() {
                   value={value}
                   secureTextEntry
                   onChangeText={onChange}
+                  isPasswordField
+                  errorMessage={errors.password?.message}
                 />
               )}
             />
           </ContainerPasswordInput>
           <Controller
-            name="password"
+            name="confirm_password"
             control={control}
             render={({ field: { onChange, value } }) => (
               <Input
@@ -134,6 +145,7 @@ export function ForgotPassword() {
                 value={value}
                 secureTextEntry
                 onChangeText={onChange}
+                isPasswordField
               />
             )}
           />
@@ -144,12 +156,16 @@ export function ForgotPassword() {
             <ButtonComponent
               title="SEARCH"
               height={48}
+              width={343}
+              isLoading={isLoading}
               onPress={handleSubmit(SearchUserByEmail)}
             />
           </ButtonContainer>
           <ButtonComponent
             title="CONFIRM"
             height={48}
+            width={343}
+            isLoading={isLoading}
             onPress={handleSubmit(handleFormSubmit)}
           />
         </ButtonContent>

@@ -11,10 +11,12 @@ export const ImageLogoBG = styled.ImageBackground`
   height: 375px;
   top: 218px;
   flex-shrink: 0;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export const ContentInputs = styled.View`
-  margin-left: 26px;
+  margin-left: 16px;
 `;
 
 export const ContainerEmailInput = styled.View`
@@ -25,8 +27,9 @@ export const ButtonContent = styled.View`
   top: 60px;
   height: 100px;
   justify-content: space-between;
-  margin-left: 17px;
-  margin-right: 17px;
+  align-items: center;
+  margin-left: 16px;
+  margin-right: 16px;
 `;
 
 export const ContainerText = styled.View`

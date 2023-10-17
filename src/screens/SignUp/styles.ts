@@ -7,28 +7,21 @@ export const Container = styled(SafeAreaView)`
 `;
 
 export const ContainerImage = styled.ImageBackground`
-  position: absolute;
   width: 375px;
-  /* justify-content: center; */
-  align-self: center;
-  min-height: 375px;
-  /* top: 64px; */
-  z-index: 1;
+  height: 375px;
+  top: 218px;
+  flex-shrink: 0;
 `;
 
 export const ContentHeader = styled.View`
   height: 104px;
   margin-bottom: 62px;
+  bottom: 202px;
 `;
 
 export const ContentInputs = styled.View`
-  min-height: 280px;
-  max-height: 340px;
-  align-items: center;
-  justify-content: space-between;
-  margin-left: 15px;
-  margin-right: 17px;
-  margin-bottom: 8px;
+  bottom: 180px;
+  margin-left: 32px;
 `;
 
 export const TextContent = styled.Text`
@@ -38,6 +31,7 @@ export const TextContent = styled.Text`
   margin-left: 16px;
   margin-right: 19px;
   margin-bottom: 16px;
+  bottom: 200px;
 `;
 
 export const Subtitle = styled.Text`
@@ -61,9 +55,22 @@ export const Spacer = styled.View`
 `;
 
 export const ButtonContent = styled.View`
-  top: 60px;
   height: 100px;
+  width: 343px;
   justify-content: space-between;
-  margin-left: 17px;
-  margin-right: 17px;
+  margin-left: 32px;
+  margin-right: 16px;
+  bottom: 80px;
+`;
+
+export const ContainerName = styled.View`
+  margin-bottom: 16px;
+`;
+
+export const ContainerEmail = styled.View`
+  margin-bottom: 16px;
+`;
+
+export const ContainerPassword = styled.View`
+  margin-bottom: 16px;
 `;

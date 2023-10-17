@@ -11,8 +11,8 @@ interface StoreStates {
 const useStoreData = create<StoreStates>(
   (set): StoreStates =>
     <StoreStates>{
-      name: "teste1",
-      email: "teste",
+      name: "User",
+      email: "Email",
       id: "teste",
       setEmail: (email: string) => set((state) => ({ ...state, email })),
       setName: (name: string) => set((state) => ({ ...state, name }))

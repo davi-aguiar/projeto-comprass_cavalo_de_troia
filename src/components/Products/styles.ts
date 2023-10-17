@@ -74,5 +74,20 @@ export const HorizontalScrollView = styled.ScrollView.attrs({
   showsHorizontalScrollIndicator: false,
 })``;
 
+export const CategoryBox = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const ViewAllButton = styled.TouchableOpacity`
+  margin-right: 16px;
+  margin-top: 32px;
+  margin-bottom: 27px;
+`;
+
+export const ViewAllText = styled.Text`
+  font-size: 15px;
+`;
+
 
 

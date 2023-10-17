@@ -15,6 +15,9 @@ import {
     CategoryContainer,
     CategoryText,
     HorizontalScrollView,
+    CategoryBox,
+    ViewAllButton,
+    ViewAllText,
 } from './styles';
 
 const ProductItem = React.memo(function ProductItem({ product }) {
@@ -35,7 +38,7 @@ const ProductItem = React.memo(function ProductItem({ product }) {
                     <ButtonImage source={require('../../../assets/images/add-button.png')} />
                 </TouchableButton>
             </CounterContainer>
-            
+
             <ProductBox>
                 <ProductImage source={{ uri: images[0] }} />
                 <ProductName>{title}</ProductName>
@@ -91,7 +94,12 @@ function Products({ searchTerm }) {
         <VerticalScrollView>
             {Object.entries(filteredProducts).map(([categoryName, categoryProducts]) => (
                 <CategoryContainer key={categoryName}>
+                    <CategoryBox>
                     <CategoryText>{categoryName}</CategoryText>
+                    <ViewAllButton>
+                        <ViewAllText>View All</ViewAllText>
+                    </ViewAllButton>
+                    </CategoryBox>
                     <HorizontalScrollView>
                         <ProductsContainer>
                             {categoryProducts.map(product => (

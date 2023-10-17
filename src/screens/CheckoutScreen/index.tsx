@@ -1,6 +1,6 @@
 import React, { useState ,useEffect} from 'react';
 import { View, Alert } from 'react-native';
-
+import CreditCardModal from '@components/CreditCardModal';
 import { CheckoutHeader } from '@components/CheckoutHeader';
 import { styles as checkoutStyles, styles } from './styles';
 import OrderSummary from '@components/CheckOrderSummary';
@@ -13,8 +13,9 @@ import PaymentSection from '@components/CheckoutPaymentBox';
 import { SucessScreen } from '@screens/SucessScreen';
 export const CheckoutScreen = ({ navigation, route }: { navigation: any, route: any }) => {
   const [isPaymentMethodModalVisible, setPaymentMethodModalVisible] = useState(false);
+  const [isCreditCardModalVisible, setCreditCardModalVisible] = useState(false);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string | null>(null);
-  const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState(''); 
+  const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState('');
 
 
   const deliveryMethods = [
@@ -62,6 +63,14 @@ export const CheckoutScreen = ({ navigation, route }: { navigation: any, route: 
     setPaymentMethodModalVisible(false);
   };
 
+  const openCreditCardModal = () => {
+    setCreditCardModalVisible(true);
+  };
+
+  const closeCreditCardModal = () => {
+    setCreditCardModalVisible(false);
+  };
+
   return (
     <ScrollView >
     <View >
@@ -71,6 +80,7 @@ export const CheckoutScreen = ({ navigation, route }: { navigation: any, route: 
       <PaymentSection
     selectedPaymentMethod={selectedPaymentMethod}
     openPaymentMethodModal={openPaymentMethodModal}
+    openCreditCardModal={openCreditCardModal}
   />
       <PaymentMethodModal
         visible={isPaymentMethodModalVisible}
@@ -78,8 +88,17 @@ export const CheckoutScreen = ({ navigation, route }: { navigation: any, route: 
         onSelectPaymentMethod={(method) => {
           setSelectedPaymentMethod(method);
           closePaymentMethodModal();
-      
         }}
+        openCreditCardModal={openCreditCardModal} // Passe a função de abrir o modal do cartão de crédito
+      />
+       <CreditCardModal
+        visible={isCreditCardModalVisible}
+        onClose={closeCreditCardModal}
+        onAddCreditCard={(creditCardData) => {
+          // Lógica para adicionar informações do cartão de crédito
+          closeCreditCardModal();
+        }}
+        isNested={true} // Passe a flag para indicar que é um modal aninhado
       />
        <DeliveryMethodSection
     selectedDeliveryMethod={selectedDeliveryMethod}

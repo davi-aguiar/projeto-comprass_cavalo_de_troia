@@ -13,13 +13,13 @@ import {
 interface PaymentSectionProps {
   selectedPaymentMethod: string | null;
   openPaymentMethodModal: () => void;
-  openCreditCardModal: () => void; // Adicione esta propriedade
+  openCreditCardModal: () => void;
 }
 
 const PaymentSection: React.FC<PaymentSectionProps> = ({
   selectedPaymentMethod,
   openPaymentMethodModal,
-  openCreditCardModal, // Receba a nova propriedade
+  openCreditCardModal, 
 }) => {
   return (
     <ContainerPayment>
@@ -27,7 +27,7 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({
         <Control>
           <ShippingAddressText2>Payment Method</ShippingAddressText2>
           <ButtonNavigate2 onPress={openPaymentMethodModal}>
-            <ButtonText>Alterar</ButtonText>
+            <ButtonText>Change</ButtonText>
           </ButtonNavigate2>
         </Control>
         {selectedPaymentMethod && (
@@ -35,9 +35,9 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({
             Selected: {selectedPaymentMethod}
           </SelectedPaymentMethodText>
         )}
-        {selectedPaymentMethod === 'CreditCard' && ( // Mostrar informações adicionais quando o cartão de crédito é selecionado
+        {selectedPaymentMethod === 'CreditCard' && (
           <TouchableOpacity onPress={openCreditCardModal}>
-            <Text>Editar informações do cartão</Text>
+         
           </TouchableOpacity>
         )}
       </SectionPayment>

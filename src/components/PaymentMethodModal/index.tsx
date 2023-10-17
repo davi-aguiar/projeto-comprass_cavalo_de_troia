@@ -13,14 +13,14 @@ interface PaymentMethodModalProps {
   visible: boolean;
   onClose: () => void;
   onSelectPaymentMethod: (method: string) => void;
-  openCreditCardModal: () => void; // Adicione esta propriedade
+  openCreditCardModal: () => void;
 }
 
 const PaymentMethodModal: React.FC<PaymentMethodModalProps> = ({
   visible,
   onClose,
   onSelectPaymentMethod,
-  openCreditCardModal, // Receba a nova propriedade
+  openCreditCardModal, 
 }) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
@@ -28,7 +28,7 @@ const PaymentMethodModal: React.FC<PaymentMethodModalProps> = ({
     setSelectedOption(method);
     onSelectPaymentMethod(method);
     if (method === 'CreditCard') {
-      openCreditCardModal(); // Abra o modal do cartão de crédito quando selecionado
+      openCreditCardModal();
     }
   };
 

@@ -89,16 +89,16 @@ export const CheckoutScreen = ({ navigation, route }: { navigation: any, route: 
           setSelectedPaymentMethod(method);
           closePaymentMethodModal();
         }}
-        openCreditCardModal={openCreditCardModal} // Passe a função de abrir o modal do cartão de crédito
+        openCreditCardModal={openCreditCardModal} 
       />
        <CreditCardModal
         visible={isCreditCardModalVisible}
         onClose={closeCreditCardModal}
         onAddCreditCard={(creditCardData) => {
-          // Lógica para adicionar informações do cartão de crédito
+          
           closeCreditCardModal();
         }}
-        isNested={true} // Passe a flag para indicar que é um modal aninhado
+        isNested={true} 
       />
        <DeliveryMethodSection
     selectedDeliveryMethod={selectedDeliveryMethod}

@@ -36,7 +36,7 @@ export const useCartStore = create<CartStore>((set) => ({
 
   fetchAvailableItems: async () => {
     try {
-      const response = api.getProductData(0);
+      const response = await api.get("/products");
       if (response) {
         const data: Item[] = await response;
         set({ availableItems: data });

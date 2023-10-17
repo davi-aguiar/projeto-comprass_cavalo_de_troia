@@ -28,7 +28,7 @@ import {
   Title,
   TitleConteiner,
 } from "./styles";
-import useStoreData from "@requests/index";
+import useStoreData from "../../context/index";
 
 export function Profile() {
   const [editIsEnabled, setEditIsEnabled] = useState(false);

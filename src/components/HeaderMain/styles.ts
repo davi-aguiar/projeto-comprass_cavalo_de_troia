@@ -8,6 +8,7 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const ImageBackgroundStyled = styled.ImageBackground`
+    flex: 1;
     width: 100%;
     height: 100%;
 `;
@@ -65,4 +66,12 @@ export const TextStyled = styled.Text`
 export const CartImage = styled.Image`
     width: 46px;
     height: 46px;
+`;
+
+export const TextInput = styled.TextInput`
+    background-color: white;
+    border: 6px solid red;
+    border-radius: 18px;
+    padding: 2px 15px;
+    margin: 22px;
 `;

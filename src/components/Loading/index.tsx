@@ -4,11 +4,15 @@ import { Container, ImageLogoBG, LoadIndicator, LogoComprass } from "./styles";
 export function Loading() {
   return (
     <Container>
-      <ImageLogoBG source={require("../../assets/images/ImageBackground.png")}>
+      <ImageLogoBG
+        accessibilityHint="image-bg"
+        source={require("../../assets/images/ImageBackground.png")}
+      >
         <LogoComprass
+          accessibilityHint="logo-image"
           source={require("../../assets/images/ComprassLogo.png")}
         />
-        <LoadIndicator />
+        <LoadIndicator accessibilityHint="spinner" />
       </ImageLogoBG>
     </Container>
   );

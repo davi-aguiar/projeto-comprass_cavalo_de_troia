@@ -25,6 +25,7 @@ export function ButtonComponent({
     <>
       {isLoading ? (
         <Container
+          accessibilityHint="button"
           style={{
             opacity: 0.5,
             height: height,

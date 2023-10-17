@@ -52,7 +52,7 @@ export const CartContainer = styled.View`
     align-items: center;
     justify-content: flex-start;
     margin-top: 110px;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
 `;
 
 export const TextStyled = styled.Text`
@@ -74,4 +74,54 @@ export const TextInput = styled.TextInput`
     border-radius: 18px;
     padding: 2px 15px;
     margin: 22px;
+
+    width: 90%;
+    position: absolute;
+    top: 55px;
+    z-index: 10;
+`;
+
+
+
+export const ProductDropdown = styled.View`
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    
+
+    position: absolute;
+    top: 130px;
+    z-index: 10;
+`;
+
+export const ProductDropdownItem = styled.TouchableOpacity`
+    width: 90%;
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 18px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    
+`;
+
+export const ProductImage = styled.Image`
+    width: 40px;
+    height: 55px;
+    border-radius: 8px;
+    
+`;
+
+export const ProductTitle = styled.Text`
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+    
+`;
+
+export const ProductPrice = styled.Text`
+    font-size: 14px;
+    color: red;
+    font-weight: 800;
 `;

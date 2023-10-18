@@ -11,7 +11,8 @@ describe("ButtonComponent", () => {
       COLORS: {
         RED_500: "red",
         GRAY_900: "gray"
-      }
+      },
+      TouchableOpacity: styled.TouchableOpacity
     };
     const mockUseTheme = jest.fn().mockReturnValue(mockTheme);
     jest.mock("styled-components/native", () => ({

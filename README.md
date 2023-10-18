@@ -1,6 +1,10 @@
 # Compass Sales
 
-This is the project for an ecommerce (Comprass_Sales) proposed for week 12 of the Compass.Uol scholarship program.
+This project was presented as the third challenge within the Hybrid Journey (React Native) - part of Compass UOL's AWS Cloud Context Grant Program.
+
+With the goal of applying the knowledge gained during the journey, the challenge involves the development of a mobile application named "Comprass."
+
+The project was constructed using React Native and TypeScript.
 
 ## Prerequisites
 
@@ -15,10 +19,10 @@ Follow this steps
 
 1. Clone this repository:
 
-   ```shell
-   git clone https://github.com/davi-aguiar/projeto-comprass_cavalo_de_troia.git
+```shell
+ git clone https://github.com/davi-aguiar/projeto-comprass_cavalo_de_troia.git
 
-   ```
+```
 
 2. Install the dependencies
 
@@ -53,7 +57,14 @@ npm run android
 
 ```shell
 yarn android
+
 ```
+
+## To Execute With Expo
+
+` npx expo start`
+
+` yarn expo start`
 
 ### Techonologies Used
 
@@ -65,3 +76,5 @@ React Navigation
 Hoshi
 Feather and IonIcons
 Zustand
+Figma
+Platzi Api

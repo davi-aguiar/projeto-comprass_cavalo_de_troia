@@ -52,20 +52,12 @@ export function Input({
 
   const hasValue = value && value.trim() !== "";
 
-  const labelStyle = {
-    fontFamily: FONT_FAMILY.REGULAR,
-    fontSize: isFocused || hasValue ? FONT_SIZE.XS : FONT_SIZE.SM,
-    top: isFocused || hasValue ? 10 : -4,
-    color: COLORS.GRAY_500
-  };
-
   return (
     <>
       <Container>
         <HoshiInput
           secureTextEntry={isPasswordField ? isPasswordVisible : false}
           label={label}
-          labelStyle={labelStyle}
           style={{
             borderColor: errorMessage
               ? COLORS.RED_500

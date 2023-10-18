@@ -27,7 +27,7 @@ import { AuthProps } from "@routes/auth.routes";
 import { fetchAllUsers } from "../../requests/FetchAllUsers";
 import { updatePassword } from "../../requests/UpdatePassword";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { forgotPasswordSchema } from "@utils/Validations/ForgotPasswordSchema";
+import { forgotPasswordSchema } from "../../utils/Validations/ForgotPasswordSchema";
 
 export function ForgotPassword() {
   type FormType = { email: string; password: string; confirm_password: string };

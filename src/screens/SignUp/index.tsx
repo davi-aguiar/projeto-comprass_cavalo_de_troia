@@ -173,6 +173,7 @@ export function SignUp() {
             <ButtonComponent
               title="SIGN UP"
               height={48}
+              isLoading={isLoading}
               onPress={handleSubmit(handleFormSubmit)}
             />
           </ButtonContent>

@@ -32,7 +32,7 @@ import authData from "../../context/index";
 import { loginSchema } from "@utils/Validations/SignIn";
 
 export function Login() {
-  type FormType = { email: string; password: string };
+  type FormType = { name: string; email: string; password: string };
 
   const navigation = useNavigation<AuthProps>();
   const setToken = authData((state) => state.setToken);
